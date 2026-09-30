@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-soft: var(--soft);
+}
+
+:root {
+  color-scheme: light;
+  --canvas: #f3f6fa;
+  --panel: #ffffff;
+  --ink: #192c43;
+  --muted: #53677d;
+  --line: #dce4ed;
+  --accent: #285bc5;
+  --soft: #eaf0fc;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --canvas: #101c2b;
+  --panel: #18283b;
+  --ink: #edf3fb;
+  --muted: #afbed1;
+  --line: #33465e;
+  --accent: #94b8ff;
+  --soft: #253c60;
+}
+
+@layer base {
+  body {
+    @apply m-0 min-w-80 bg-canvas font-sans text-ink antialiased;
+  }
+  button,
+  a,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:not(:disabled),
+  select {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+  ::selection {
+    background: #c4d7fa;
+    color: #192c43;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,8 +1,8 @@
 # InsightSphere Development Roadmap
 
-## Current Phase: Phase 0 — Project Foundation
+## Current Phase: Phase 1 — Application Foundation & Dashboard Shell
 
-Phase 0 establishes the repository only. Phase 1 and all subsequent work require explicit scope authorization. No analytics APIs are connected yet.
+Phase 0 is complete. Phase 1 is authorized and implements the shell, routes, query provider, shared UI, and appearance preferences. No analytics APIs are connected. Phase 2 requires a separate request. Deployment remains with the user.
 
 ## Phase 0 — Project Foundation
 
@@ -28,6 +28,8 @@ Do not implement API features in Phase 0.
 ---
 
 ## Phase 1 — Application Foundation & Dashboard Shell
+
+Status: implemented and locally verified. See [Phase 1 verification](PHASE_1_VERIFICATION.md) for commands, browser checks, and limits.
 
 Goal:
 

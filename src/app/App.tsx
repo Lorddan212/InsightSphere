@@ -1,8 +1,11 @@
+import { RouterProvider } from 'react-router'
+import { Providers } from './providers'
+import { router } from './router'
+
 export default function App() {
   return (
-    <main>
-      <h1>InsightSphere</h1>
-      <p>Multi-API Analytics Dashboard — project foundation.</p>
-    </main>
+    <Providers>
+      <RouterProvider router={router} />
+    </Providers>
   )
 }
