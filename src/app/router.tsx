@@ -8,6 +8,7 @@ import {
   DomainPage,
   SettingsPage,
   NotFoundPage,
+  WeatherPage,
 } from './lazyPages'
 
 export const router = createBrowserRouter([
@@ -17,7 +18,10 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <DashboardOverview /> },
       { path: 'dashboard', element: <Navigate to="/" replace /> },
-      ...domains.map(({ path }) => ({ path, element: <DomainPage /> })),
+      { path: '/weather', element: <WeatherPage /> },
+      ...domains
+        .filter(({ path }) => path !== '/weather')
+        .map(({ path }) => ({ path, element: <DomainPage /> })),
       { path: 'settings', element: <SettingsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

@@ -1,8 +1,8 @@
 # InsightSphere Development Roadmap
 
-## Current Phase: Phase 1 — Application Foundation & Dashboard Shell
+## Current Phase: Phase 2 — Weather Analytics
 
-Phase 0 is complete. Phase 1 is authorized and implements the shell, routes, query provider, shared UI, and appearance preferences. No analytics APIs are connected. Phase 2 requires a separate request. Deployment remains with the user.
+Phase 0 and Phase 1 are complete. Phase 2 is complete: Weather Analytics. Phase 3 is not authorized. Deployment remains with the user.
 
 ## Phase 0 — Project Foundation
 
@@ -59,6 +59,8 @@ No external analytics API needs to be fully integrated yet.
 ---
 
 ## Phase 2 — Weather Analytics
+
+Status: Complete. Current conditions, search, metrics, hourly and daily forecasts, chart, runtime validation, caching, and tests are implemented. See [Phase 2 verification](PHASE_2_VERIFICATION.md) and [API contract](WEATHER_API_CONTRACT.md). Next: Phase 3, only on request.
 
 Goal:
 

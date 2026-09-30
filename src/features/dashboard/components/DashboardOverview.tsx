@@ -53,12 +53,12 @@ export default function DashboardOverview() {
                 <dd className="text-xl font-semibold">4</dd>
               </div>
               <div className="flex items-center justify-between border-b border-line pb-4">
-                <dt className="text-sm text-muted">Connected sources</dt>
-                <dd className="text-xl font-semibold">0</dd>
+                <dt className="text-sm text-muted">Available modules</dt>
+                <dd className="text-xl font-semibold">1</dd>
               </div>
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-muted">Data availability</dt>
-                <dd className="text-sm font-medium">Coming soon</dd>
+                <dd className="text-sm font-medium">Weather available</dd>
               </div>
             </dl>
           </div>
@@ -76,7 +76,9 @@ export default function DashboardOverview() {
             <Card key={path} className="p-5">
               <div className="mb-6 flex items-center justify-between">
                 <Icon aria-hidden="true" className="size-6 text-accent" />
-                <span className="text-xs text-muted">Not connected</span>
+                <span className="text-xs text-muted">
+                  {path === '/weather' ? 'Available' : 'Not connected'}
+                </span>
               </div>
               <h3 className="text-lg font-semibold">
                 <Link
@@ -89,7 +91,7 @@ export default function DashboardOverview() {
               </h3>
               <p className="mt-2 text-sm leading-6 text-muted">{question}</p>
               <p className="mt-5 border-t border-line pt-4 text-xs text-muted">
-                Planned source: {provider}
+                {path === '/weather' ? 'Source' : 'Planned source'}: {provider}
               </p>
             </Card>
           ))}
@@ -109,7 +111,7 @@ export default function DashboardOverview() {
           </div>
           <EmptyState
             title="Your insights will grow here"
-            description="Once sources are connected, this space will bring together key indicators, trends, and the context behind them. No live data is available yet."
+            description="Weather analytics is available on its dedicated page. Cross-domain summaries will appear here as more modules are connected."
           />
         </Card>
       </section>

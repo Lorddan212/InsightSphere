@@ -23,15 +23,17 @@ export function ErrorState({
   title = 'This view could not load',
   description,
   onRetry,
+  headingLevel: Heading = 'h1',
 }: {
   title?: string
   description: string
   onRetry?: () => void
+  headingLevel?: 'h1' | 'h2'
 }) {
   return (
     <div role="alert" className="rounded-xl border border-line bg-panel p-8">
       <CircleAlert aria-hidden="true" className="mb-3 text-accent" />
-      <h1 className="text-xl font-semibold">{title}</h1>
+      <Heading className="text-xl font-semibold">{title}</Heading>
       <p className="my-3 text-muted">{description}</p>
       {onRetry && <Button onClick={onRetry}>Try again</Button>}
     </div>

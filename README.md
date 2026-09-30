@@ -2,7 +2,7 @@
 
 Multi-API Analytics Dashboard — a portfolio project for meaningful KPIs, trends, comparisons, and drill-down analysis.
 
-**Current phase: Phase 1 — Application Foundation & Dashboard Shell.** The responsive shell, route navigation, shared UI, TanStack Query provider, and persisted light/dark/system appearance are implemented. Domain pages intentionally show that their data sources are not connected. No external API integration exists yet.
+**Current phase: Phase 2 — Weather Analytics. Status: Complete.** The existing shell now includes live Open-Meteo weather analytics at /weather. Other domain pages remain unconnected.
 
 ## Local development
 
@@ -20,7 +20,7 @@ npm run dev
 | `npm run build`   | Type-check application/tooling and build production assets |
 | `npm run preview` | Preview the build locally; not a production server         |
 
-No test runner is installed yet. Introduce Vitest, React Testing Library, and MSW with meaningful tests. Lint and build do not substitute for browser, responsive, or accessibility testing.
+Run `npm run test` for the offline Vitest suite, or `npm run test:watch` during development. React Testing Library and MSW exercise API contracts and user behavior without live requests. Browser layout checks remain separate.
 
 ## Architecture
 
@@ -52,12 +52,12 @@ Keep domain logic in its feature. Global hooks, schemas, types, and utilities ar
 
 Installed: React, React DOM, Vite, TypeScript, the React Vite plugin, type definitions, and ESLint with React/TypeScript rules. Strict typing is enabled for application and tooling projects.
 
-Deferred until concrete use:
+Phase dependencies:
 
 Installed for Phase 1: Tailwind CSS with its Vite plugin, React Router, TanStack Query, and Lucide React. These support styling, routing, future server state, and navigation icons respectively.
 
-- Features: Zod for runtime contracts, React Hook Form for forms, Recharts for visualizations, date-fns for date handling.
-- Tests: Vitest, React Testing Library, MSW where appropriate.
+- Phase 2: Zod validates network responses; Recharts renders the temperature chart. Native Intl handles timezone-aware dates; React Hook Form and date-fns remain deferred.
+- Phase 2 tests: Vitest, React Testing Library, user-event, jest-dom, jsdom, and MSW.
 
 Use native Fetch initially. No Axios, additional state library, or backend is needed now. Formatting follows .editorconfig: two spaces, UTF-8, LF, final newline; JavaScript/TypeScript follows single quotes and no semicolons. ESLint handles code quality. Prettier enforces this style through `npm run format` and `npm run format:check`.
 
@@ -70,7 +70,7 @@ Use native Fetch initially. No Axios, additional state library, or backend is ne
 | Economy    | World Bank Indicators API | Country indicators, histories, comparisons                  |
 | Crypto     | CoinGecko                 | Rankings, market data, asset histories                      |
 
-These providers are not connected. Verify their current contracts, access requirements, and usage limits during the relevant phase. CoinGecko authentication and a secure proxy, if needed, are Phase 5 decisions.
+Open-Meteo is connected; the other providers remain planned. Verify their current contracts, access requirements, and usage limits during the relevant phase. CoinGecko authentication and a secure proxy, if needed, are Phase 5 decisions.
 
 ## Environment and security
 
@@ -80,7 +80,7 @@ No environment variables are required. .env.example records this. Real .env file
 
 Git is initialized locally. Phase 1 does not change repository remotes or Git identity and does not create a commit. Use focused, meaningful commits when requested.
 
-The next task is **Phase 2 — Weather Analytics**, requiring a separate request. Phase 1 stops at the application foundation; no external requests or fabricated analytics data are included.
+The next task is **Phase 3 — Currency Analytics**, requiring a separate request. The overview only labels weather as available; unified dashboard metrics remain Phase 6 work.
 
 Deployment is owned by the user; no deployment was performed. Browser-history routing requires the chosen host to serve index.html for application routes. Add screenshots, API/testing documentation, production smoke-test evidence, and portfolio lessons as implemented functionality becomes available.
 
@@ -95,3 +95,15 @@ Shared primitives: Button, Card, Badge, PageHeader, EmptyState, ErrorState, and 
 Implementation references: [Tailwind Vite setup](https://tailwindcss.com/docs/installation/using-vite), [React Router](https://reactrouter.com/start/declarative/routing), and [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/reference/QueryClientProvider).
 
 See [Phase 1 verification](docs/PHASE_1_VERIFICATION.md) for executed checks and remaining validation limits.
+
+## Weather analytics
+
+The default location is Abuja, Nigeria. Search for another place with at least three characters; results are debounced by 400ms and selected using native keyboard-accessible buttons. The selected location persists in sessionStorage across navigation and reloads; precise geolocation is never requested. URL sharing is deferred.
+
+Current conditions, four KPI cards, a 24-hour temperature chart, hourly cards plus an accessible data table, and a seven-day forecast share one validated, normalized query. Measurements use Celsius, km/h, mm, and hPa. IANA timezones keep timestamps local to the selected place, including daylight-saving changes. Current precipitation covers the provider's current interval; hourly precipitation covers the preceding hour.
+
+Forecasts are fresh for 10 minutes and cached for 30 minutes. A manual refresh preserves cached data if it fails. Missing values, incomplete periods, loading, offline, errors, and no-results searches have explicit UI states. No weather key or environment setup is needed for the public non-commercial endpoint.
+
+See [weather API contract](docs/WEATHER_API_CONTRACT.md) for request fields, error semantics, attribution, and architecture. Vitest explicitly uses NODE_ENV=test so component tests also work in environments that globally set production mode.
+
+[Phase 2 verification](docs/PHASE_2_VERIFICATION.md) records the 37 passing tests, command results, live browser checks, and remaining validation limits.

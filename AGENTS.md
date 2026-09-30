@@ -6,9 +6,9 @@ InsightSphere — Multi-API Analytics Dashboard is a portfolio-grade analytics p
 
 ## Current Development Phase
 
-### Current Phase: Phase 1 — Application Foundation & Dashboard Shell
+### Current Phase: Phase 2 — Weather Analytics
 
-Phase 1 is authorized. Build the application shell and shared foundations only. Phase 2 API integration requires a separate request. Deployment is owned by the user. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
+Status: Complete. Phase 0 and Phase 1 are complete. Phase 2 is authorized for Weather Analytics only. Phase 3 requires a separate request. Deployment is owned by the user. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
 
 ## Technology Stack
 
@@ -79,7 +79,7 @@ Ignore real `.env` files; `.env.example` contains documentation and non-secret e
 
 ## Testing Rules
 
-Run only scripts that actually exist in package.json. Phase 1 uses `npm run lint`, `npm run format:check`, and `npm run build`; add unit/component/integration scripts when tests exist. Later use Vitest, React Testing Library, and MSW where appropriate. Cover transformations, schema failures, network errors, missing data, retries, and user behavior rather than mirroring implementation details. Browser, responsive, keyboard, provider, and deployment checks must be reported separately from compilation. No test script means tests were not run, not that they passed.
+Run only scripts that actually exist in package.json. Run `npm run lint`, `npm run test`, `npm run format:check`, and `npm run build`. Phase 2 uses Vitest, React Testing Library, and MSW for offline API and component tests. Cover transformations, schema failures, network errors, missing data, retries, and user behavior rather than mirroring implementation details. Browser, responsive, keyboard, provider, and deployment checks must be reported separately from compilation. No test script means tests were not run, not that they passed.
 
 ## Completion Checklist
 
