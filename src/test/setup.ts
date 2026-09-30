@@ -1,9 +1,23 @@
 import '@testing-library/jest-dom/vitest'
-import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest'
+import { afterAll, afterEach, beforeAll, beforeEach, expect, vi } from 'vitest'
 import { cleanup } from '@testing-library/react'
 import { server } from './server'
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
+const unexpectedRequests: string[] = []
+
+// Register once per isolated test environment, never once per request/test.
+beforeAll(() => {
+  server.events.on('response:bypass', ({ request }) => {
+    unexpectedRequests.push(`Bypassed: ${request.method} ${request.url}`)
+  })
+  server.listen({
+    onUnhandledRequest(request, print) {
+      unexpectedRequests.push(`Unhandled: ${request.method} ${request.url}`)
+      // Block the real request, even if application error handling catches it.
+      print.error()
+    },
+  })
+})
 beforeEach(() => {
   vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue(
     new DOMRect(0, 0, 800, 300),
@@ -14,6 +28,9 @@ afterEach(() => {
   server.resetHandlers()
   sessionStorage.clear()
   vi.useRealTimers()
+  // A caught network error must not accidentally make an unmocked test pass.
+  const unexpected = unexpectedRequests.splice(0)
+  expect(unexpected, 'All test requests must be handled by MSW').toEqual([])
 })
 afterAll(() => server.close())
 

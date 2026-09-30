@@ -54,11 +54,11 @@ export default function DashboardOverview() {
               </div>
               <div className="flex items-center justify-between border-b border-line pb-4">
                 <dt className="text-sm text-muted">Available modules</dt>
-                <dd className="text-xl font-semibold">1</dd>
+                <dd className="text-xl font-semibold">2</dd>
               </div>
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-muted">Data availability</dt>
-                <dd className="text-sm font-medium">Weather available</dd>
+                <dd className="text-sm font-medium">Weather & currencies</dd>
               </div>
             </dl>
           </div>
@@ -77,7 +77,9 @@ export default function DashboardOverview() {
               <div className="mb-6 flex items-center justify-between">
                 <Icon aria-hidden="true" className="size-6 text-accent" />
                 <span className="text-xs text-muted">
-                  {path === '/weather' ? 'Available' : 'Not connected'}
+                  {path === '/weather' || path === '/currencies'
+                    ? 'Available'
+                    : 'Not connected'}
                 </span>
               </div>
               <h3 className="text-lg font-semibold">
@@ -91,7 +93,10 @@ export default function DashboardOverview() {
               </h3>
               <p className="mt-2 text-sm leading-6 text-muted">{question}</p>
               <p className="mt-5 border-t border-line pt-4 text-xs text-muted">
-                {path === '/weather' ? 'Source' : 'Planned source'}: {provider}
+                {path === '/weather' || path === '/currencies'
+                  ? 'Source'
+                  : 'Planned source'}
+                : {provider}
               </p>
             </Card>
           ))}
@@ -111,7 +116,7 @@ export default function DashboardOverview() {
           </div>
           <EmptyState
             title="Your insights will grow here"
-            description="Weather analytics is available on its dedicated page. Cross-domain summaries will appear here as more modules are connected."
+            description="Weather and currency analytics are available on their dedicated pages. Cross-domain summaries are planned for a later phase."
           />
         </Card>
       </section>

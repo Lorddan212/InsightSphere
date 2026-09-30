@@ -2,7 +2,7 @@
 
 Multi-API Analytics Dashboard — a portfolio project for meaningful KPIs, trends, comparisons, and drill-down analysis.
 
-**Current phase: Phase 2 — Weather Analytics. Status: Complete.** The existing shell now includes live Open-Meteo weather analytics at /weather. Other domain pages remain unconnected.
+**Current phase: Phase 3 — Currency Analytics. Status: Complete.** The existing shell includes Open-Meteo weather analytics at /weather and Frankfurter currency analytics at /currencies. Economy and crypto remain unconnected.
 
 ## Local development
 
@@ -80,7 +80,7 @@ No environment variables are required. .env.example records this. Real .env file
 
 Git is initialized locally. Phase 1 does not change repository remotes or Git identity and does not create a commit. Use focused, meaningful commits when requested.
 
-The next task is **Phase 3 — Currency Analytics**, requiring a separate request. The overview only labels weather as available; unified dashboard metrics remain Phase 6 work.
+The next intended task is **Phase 4 — Economic Analytics**, requiring a separate request. The overview labels weather and currencies as available; unified dashboard metrics remain Phase 6 work.
 
 Deployment is owned by the user; no deployment was performed. Browser-history routing requires the chosen host to serve index.html for application routes. Add screenshots, API/testing documentation, production smoke-test evidence, and portfolio lessons as implemented functionality becomes available.
 
@@ -107,3 +107,15 @@ Forecasts are fresh for 10 minutes and cached for 30 minutes. A manual refresh p
 See [weather API contract](docs/WEATHER_API_CONTRACT.md) for request fields, error semantics, attribution, and architecture. Vitest explicitly uses NODE_ENV=test so component tests also work in environments that globally set production mode.
 
 [Phase 2 verification](docs/PHASE_2_VERIFICATION.md) records the 37 passing tests, command results, live browser checks, and remaining validation limits.
+
+## Currency analytics
+
+Frankfurter v2 supplies supported currency metadata, latest reference rates, and historical observations. NGN support was verified against the live provider; the default is USD/NGN. Select base/quote currencies, swap them without losing the amount, or choose 7D, 1M, 3M, and 1Y history. Pair and period persist in sessionStorage. Equal currencies use the identity rate without provider requests or fabricated history.
+
+The converter calculates locally from the cached rate and accepts non-negative plain decimals up to 1 trillion with at most six decimal places. Empty, invalid, and oversized inputs have explicit feedback. Intl respects currency-specific decimal places. Amount changes never trigger API requests. Results are estimates, excluding fees and spreads.
+
+The chart and accessible historical table show actual provider observations. Change compares the first and last available observations; high and low exclude missing values. Calendar date ranges use UTC and month-end clamping. Metadata caches for 24 hours, latest rates for 30 minutes, and history for one hour. Failed refreshes retain cached data with a warning. Provider publication dates are shown; these are reference rates, not real-time market quotes.
+
+No new feature dependencies were added. MSW is pinned to `2.15.0` and TypeScript to `6.0.3`. This preserves the supported test/compiler toolchain: MSW 3 produced repeated TLS listeners during the test suite, and the installed typescript-eslint does not support TypeScript 7. Tests block unhandled requests and assert that no requests bypass mocks. Use `npm install --include=dev` when the environment defaults to production.
+
+See [currency API contract](docs/CURRENCY_API_CONTRACT.md) and [Phase 3 verification](docs/PHASE_3_VERIFICATION.md) for implementation decisions, checks, and verification limits.

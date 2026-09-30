@@ -7,5 +7,8 @@ export const DomainPage = lazy(() => import('../pages/DomainPage'))
 export const WeatherPage = lazy(
   () => import('../features/weather/components/WeatherPage'),
 )
+export const CurrencyPage = lazy(
+  () => import('../features/currencies/components/CurrencyPage'),
+)
 export const SettingsPage = lazy(() => import('../pages/SettingsPage'))
 export const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))

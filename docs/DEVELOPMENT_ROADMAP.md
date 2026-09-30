@@ -1,8 +1,8 @@
 # InsightSphere Development Roadmap
 
-## Current Phase: Phase 2 — Weather Analytics
+## Current Phase: Phase 3 — Currency Analytics
 
-Phase 0 and Phase 1 are complete. Phase 2 is complete: Weather Analytics. Phase 3 is not authorized. Deployment remains with the user.
+Phases 0, 1, and 2 are complete. Phase 3 is complete: Currency Analytics. Phase 4 is not authorized. Deployment remains with the user.
 
 ## Phase 0 — Project Foundation
 
@@ -94,6 +94,8 @@ This module should establish patterns reused by later API integrations.
 ---
 
 ## Phase 3 — Currency Analytics
+
+Status: Complete. Implementation and verification are recorded in [Phase 3 verification](PHASE_3_VERIFICATION.md). Phase 4 has not started.
 
 Goal:
 

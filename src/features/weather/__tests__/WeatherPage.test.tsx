@@ -162,9 +162,13 @@ describe('weather page states', () => {
       screen.getByLabelText('Search for a city or place'),
       'Tokyo',
     )
-    const results = await screen.findByRole('list', {
-      name: 'Location results',
-    })
+    // Allow the real 400ms debounce plus rendering/network-mock scheduling
+    // under the full parallel suite; retain the actual result assertion.
+    const results = await screen.findByRole(
+      'list',
+      { name: 'Location results' },
+      { timeout: 3000 },
+    )
     const result = within(results).getByRole('button', { name: /Tokyo/ })
     result.focus()
     await user.keyboard('{Enter}')
