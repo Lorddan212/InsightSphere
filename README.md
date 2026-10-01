@@ -2,7 +2,7 @@
 
 Multi-API Analytics Dashboard — a portfolio project for meaningful KPIs, trends, comparisons, and drill-down analysis.
 
-**Current phase: Phase 3 — Currency Analytics. Status: Complete.** The existing shell includes Open-Meteo weather analytics at /weather and Frankfurter currency analytics at /currencies. Economy and crypto remain unconnected.
+**Current phase: Phase 4 — Economic Analytics. Status: Complete.** The shell includes Open-Meteo weather analytics at /weather, Frankfurter currency analytics at /currencies, and World Bank economic analytics at /economy. Crypto remains unconnected.
 
 ## Local development
 
@@ -70,7 +70,7 @@ Use native Fetch initially. No Axios, additional state library, or backend is ne
 | Economy    | World Bank Indicators API | Country indicators, histories, comparisons                  |
 | Crypto     | CoinGecko                 | Rankings, market data, asset histories                      |
 
-Open-Meteo is connected; the other providers remain planned. Verify their current contracts, access requirements, and usage limits during the relevant phase. CoinGecko authentication and a secure proxy, if needed, are Phase 5 decisions.
+Open-Meteo, Frankfurter, and World Bank are connected. CoinGecko authentication and a secure proxy, if needed, are Phase 5 decisions.
 
 ## Environment and security
 
@@ -80,7 +80,7 @@ No environment variables are required. .env.example records this. Real .env file
 
 Git is initialized locally. Phase 1 does not change repository remotes or Git identity and does not create a commit. Use focused, meaningful commits when requested.
 
-The next intended task is **Phase 4 — Economic Analytics**, requiring a separate request. The overview labels weather and currencies as available; unified dashboard metrics remain Phase 6 work.
+The next intended task is **Phase 5 — Cryptocurrency Analytics**, requiring a separate request. The overview labels weather, currencies, and economy as available; unified dashboard metrics remain Phase 6 work.
 
 Deployment is owned by the user; no deployment was performed. Browser-history routing requires the chosen host to serve index.html for application routes. Add screenshots, API/testing documentation, production smoke-test evidence, and portfolio lessons as implemented functionality becomes available.
 
@@ -119,3 +119,15 @@ The chart and accessible historical table show actual provider observations. Cha
 No new feature dependencies were added. MSW is pinned to `2.15.0` and TypeScript to `6.0.3`. This preserves the supported test/compiler toolchain: MSW 3 produced repeated TLS listeners during the test suite, and the installed typescript-eslint does not support TypeScript 7. Tests block unhandled requests and assert that no requests bypass mocks. Use `npm install --include=dev` when the environment defaults to production.
 
 See [currency API contract](docs/CURRENCY_API_CONTRACT.md) and [Phase 3 verification](docs/PHASE_3_VERIFICATION.md) for implementation decisions, checks, and verification limits.
+
+## Economic analytics
+
+World Bank Indicators API v2 (World Development Indicators, source 2) supplies annual observations, country metadata, and indicator definitions. Nigeria is the default. Ten verified indicators cover GDP, GDP growth, GDP per capita, population, population growth, unemployment, inflation, life expectancy, internet usage, and electricity access. No new dependencies or keys are required; MSW 2.15.0 and TypeScript 6.0.3 remain pinned.
+
+Country, indicator, 10Y/20Y/30Y/MAX range, and up to two comparison countries persist in sessionStorage. Native labelled controls support keyboard use. The latest available value always shows its actual observation year within the selected range. Historical charts and a scrollable data table preserve null/missing years; no zero-fill, interpolation, or fabricated current-year values are used. MAX begins at 1960; other periods count inclusively backward from the current UTC year.
+
+Level indicators use relative change with a positive starting denominator; rates and shares use percentage-point change; life expectancy uses years. GDP and GDP per capita are at current prices, not inflation-adjusted measures. Comparisons use the latest common non-null year where possible. Otherwise, each country's own latest year is displayed with an explicit warning that the comparison is not same-year. Failed comparison requests do not remove the main analysis.
+
+Only the selected indicator and selected countries are queried. Country/indicator metadata caches for seven days, series for 24 hours; requests follow and validate pagination. Manual refresh retains cached results when a request fails. Dataset update dates are distinct from observation years. Annual data can be delayed or revised.
+
+See [Economy API contract](docs/ECONOMY_API_CONTRACT.md) and [Phase 4 verification](docs/PHASE_4_VERIFICATION.md) for provider findings, executed checks, and browser verification limits.

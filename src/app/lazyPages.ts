@@ -10,5 +10,8 @@ export const WeatherPage = lazy(
 export const CurrencyPage = lazy(
   () => import('../features/currencies/components/CurrencyPage'),
 )
+export const EconomyPage = lazy(
+  () => import('../features/economy/components/EconomyPage'),
+)
 export const SettingsPage = lazy(() => import('../pages/SettingsPage'))
 export const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))

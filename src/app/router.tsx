@@ -10,6 +10,7 @@ import {
   NotFoundPage,
   WeatherPage,
   CurrencyPage,
+  EconomyPage,
 } from './lazyPages'
 
 export const router = createBrowserRouter([
@@ -21,8 +22,11 @@ export const router = createBrowserRouter([
       { path: 'dashboard', element: <Navigate to="/" replace /> },
       { path: '/weather', element: <WeatherPage /> },
       { path: '/currencies', element: <CurrencyPage /> },
+      { path: '/economy', element: <EconomyPage /> },
       ...domains
-        .filter(({ path }) => path !== '/weather' && path !== '/currencies')
+        .filter(
+          ({ path }) => !['/weather', '/currencies', '/economy'].includes(path),
+        )
         .map(({ path }) => ({ path, element: <DomainPage /> })),
       { path: 'settings', element: <SettingsPage /> },
       { path: '*', element: <NotFoundPage /> },

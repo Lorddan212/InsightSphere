@@ -6,9 +6,9 @@ InsightSphere — Multi-API Analytics Dashboard is a portfolio-grade analytics p
 
 ## Current Development Phase
 
-### Current Phase: Phase 3 — Currency Analytics
+### Current Phase: Phase 4 — Economic Analytics
 
-Status: Complete. Phases 0, 1, and 2 are complete. Phase 3 is authorized for Currency Analytics only. Phase 4 requires a separate request. Deployment is owned by the user. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
+Status: Complete. Phases 0–3 are complete. Phase 4 is authorized for Economic Analytics only. Phase 5 requires a separate request. Deployment is owned by the user. Preserve MSW 2.15.0 and TypeScript 6.0.3. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
 
 ## Technology Stack
 
