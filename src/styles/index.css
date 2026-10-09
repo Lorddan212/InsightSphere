@@ -9,6 +9,8 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-soft: var(--soft);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
 }
 
 :root {
@@ -20,6 +22,8 @@
   --line: #dce4ed;
   --accent: #285bc5;
   --soft: #eaf0fc;
+  --success: #157347;
+  --danger: #b42336;
 }
 
 :root[data-theme='dark'] {
@@ -31,6 +35,8 @@
   --line: #33465e;
   --accent: #94b8ff;
   --soft: #253c60;
+  --success: #78dab0;
+  --danger: #ff9ca9;
 }
 
 @layer base {

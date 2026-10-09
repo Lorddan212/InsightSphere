@@ -1,9 +1,13 @@
 import '@testing-library/jest-dom/vitest'
 import { afterAll, afterEach, beforeAll, beforeEach, expect, vi } from 'vitest'
-import { cleanup } from '@testing-library/react'
+import { cleanup, configure } from '@testing-library/react'
 import { server } from './server'
 
 const unexpectedRequests: string[] = []
+
+// Chart-heavy DOM suites can take more than the default second on slower hosts.
+// This changes only the wait budget, not assertions, retries, or network policy.
+configure({ asyncUtilTimeout: 5000 })
 
 // Register once per isolated test environment, never once per request/test.
 beforeAll(() => {

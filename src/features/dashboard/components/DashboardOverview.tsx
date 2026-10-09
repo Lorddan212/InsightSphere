@@ -54,11 +54,11 @@ export default function DashboardOverview() {
               </div>
               <div className="flex items-center justify-between border-b border-line pb-4">
                 <dt className="text-sm text-muted">Available modules</dt>
-                <dd className="text-xl font-semibold">3</dd>
+                <dd className="text-xl font-semibold">4</dd>
               </div>
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-muted">Data availability</dt>
-                <dd className="text-sm font-medium">3 sources connected</dd>
+                <dd className="text-sm font-medium">4 modules available</dd>
               </div>
             </dl>
           </div>
@@ -76,11 +76,7 @@ export default function DashboardOverview() {
             <Card key={path} className="p-5">
               <div className="mb-6 flex items-center justify-between">
                 <Icon aria-hidden="true" className="size-6 text-accent" />
-                <span className="text-xs text-muted">
-                  {['/weather', '/currencies', '/economy'].includes(path)
-                    ? 'Available'
-                    : 'Not connected'}
-                </span>
+                <span className="text-xs text-muted">Available</span>
               </div>
               <h3 className="text-lg font-semibold">
                 <Link
@@ -93,10 +89,7 @@ export default function DashboardOverview() {
               </h3>
               <p className="mt-2 text-sm leading-6 text-muted">{question}</p>
               <p className="mt-5 border-t border-line pt-4 text-xs text-muted">
-                {['/weather', '/currencies', '/economy'].includes(path)
-                  ? 'Source'
-                  : 'Planned source'}
-                : {provider}
+                Source: {provider}
               </p>
             </Card>
           ))}
@@ -116,7 +109,7 @@ export default function DashboardOverview() {
           </div>
           <EmptyState
             title="Your insights will grow here"
-            description="Weather, currency, and economic analytics are available on their dedicated pages. Cross-domain summaries are planned for a later phase."
+            description="Weather, currency, economic, and cryptocurrency analytics are available on their dedicated pages. Crypto requires a server API key. Cross-domain summaries are planned for a later phase."
           />
         </Card>
       </section>

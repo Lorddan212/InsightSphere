@@ -1,16 +1,15 @@
 import { createBrowserRouter, Navigate } from 'react-router'
 import { DashboardLayout } from '../components/layout/DashboardLayout'
 import { RouteErrorPage } from '../pages/RouteErrorPage'
-import { domains } from './navigation'
 
 import {
   DashboardOverview,
-  DomainPage,
   SettingsPage,
   NotFoundPage,
   WeatherPage,
   CurrencyPage,
   EconomyPage,
+  CryptoPage,
 } from './lazyPages'
 
 export const router = createBrowserRouter([
@@ -23,11 +22,8 @@ export const router = createBrowserRouter([
       { path: '/weather', element: <WeatherPage /> },
       { path: '/currencies', element: <CurrencyPage /> },
       { path: '/economy', element: <EconomyPage /> },
-      ...domains
-        .filter(
-          ({ path }) => !['/weather', '/currencies', '/economy'].includes(path),
-        )
-        .map(({ path }) => ({ path, element: <DomainPage /> })),
+      { path: '/crypto', element: <CryptoPage /> },
+      { path: '/crypto/:coinId', element: <CryptoPage /> },
       { path: 'settings', element: <SettingsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

@@ -1,8 +1,8 @@
 # InsightSphere Development Roadmap
 
-## Current Phase: Phase 4 — Economic Analytics
+## Current Phase: Phase 5 — Cryptocurrency Analytics
 
-Phases 0–3 are complete. Phase 4 is complete: Economic Analytics. Phase 5 is not authorized. Deployment remains with the user.
+Phases 0–4 are complete. Phase 5 is complete: Cryptocurrency Analytics. Phase 6 is not authorized. Deployment remains with the user.
 
 ## Phase 0 — Project Foundation
 
@@ -121,7 +121,7 @@ Planned work:
 
 ## Phase 4 — Economic Analytics
 
-Status: Complete. World Bank country indicators and comparisons are authorized. Phase 5 has not started.
+Status: Complete. World Bank country indicators and comparisons are implemented.
 
 Goal:
 
@@ -162,6 +162,8 @@ Electricity access
 ---
 
 ## Phase 5 — Cryptocurrency Analytics
+
+Status: Complete. CoinGecko Demo proxy, USD market analytics, asset routes, historical charts, and offline tests are implemented and verified. See [Crypto API contract](CRYPTO_API_CONTRACT.md).
 
 Goal:
 

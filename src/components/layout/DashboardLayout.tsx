@@ -12,7 +12,11 @@ export function DashboardLayout() {
   const main = useRef<HTMLElement>(null)
   const { pathname } = useLocation()
   const title =
-    navigation.find((item) => item.path === pathname)?.title ?? 'Page not found'
+    navigation.find(
+      (item) =>
+        item.path === pathname ||
+        (item.path === '/crypto' && /^\/crypto\/[^/]+$/.test(pathname)),
+    )?.title ?? 'Page not found'
   useEffect(() => {
     document.title = `${title} | InsightSphere`
     main.current?.focus({ preventScroll: true })

@@ -2,7 +2,7 @@
 
 Multi-API Analytics Dashboard — a portfolio project for meaningful KPIs, trends, comparisons, and drill-down analysis.
 
-**Current phase: Phase 4 — Economic Analytics. Status: Complete.** The shell includes Open-Meteo weather analytics at /weather, Frankfurter currency analytics at /currencies, and World Bank economic analytics at /economy. Crypto remains unconnected.
+**Current phase: Phase 5 — Cryptocurrency Analytics. Status: Complete.** The shell includes Open-Meteo weather analytics at /weather, Frankfurter currency analytics at /currencies, World Bank economic analytics at /economy, and CoinGecko cryptocurrency analytics at /crypto. Crypto requires a server-side Demo API key.
 
 ## Local development
 
@@ -59,7 +59,7 @@ Installed for Phase 1: Tailwind CSS with its Vite plugin, React Router, TanStack
 - Phase 2: Zod validates network responses; Recharts renders the temperature chart. Native Intl handles timezone-aware dates; React Hook Form and date-fns remain deferred.
 - Phase 2 tests: Vitest, React Testing Library, user-event, jest-dom, jsdom, and MSW.
 
-Use native Fetch initially. No Axios, additional state library, or backend is needed now. Formatting follows .editorconfig: two spaces, UTF-8, LF, final newline; JavaScript/TypeScript follows single quotes and no semicolons. ESLint handles code quality. Prettier enforces this style through `npm run format` and `npm run format:check`.
+Native Fetch handles requests. The Phase 5 CoinGecko integration adds a minimal server-only proxy, with no framework or dependency additions. Formatting follows .editorconfig: two spaces, UTF-8, LF, final newline; JavaScript/TypeScript follows single quotes and no semicolons. ESLint handles code quality. Prettier enforces this style through `npm run format` and `npm run format:check`.
 
 ## Planned APIs
 
@@ -70,7 +70,7 @@ Use native Fetch initially. No Axios, additional state library, or backend is ne
 | Economy    | World Bank Indicators API | Country indicators, histories, comparisons                  |
 | Crypto     | CoinGecko                 | Rankings, market data, asset histories                      |
 
-Open-Meteo, Frankfurter, and World Bank are connected. CoinGecko authentication and a secure proxy, if needed, are Phase 5 decisions.
+Open-Meteo, Frankfurter, and World Bank are connected. CoinGecko uses a same-origin server proxy with a server-only Demo API key.
 
 ## Environment and security
 
@@ -80,7 +80,7 @@ No environment variables are required. .env.example records this. Real .env file
 
 Git is initialized locally. Phase 1 does not change repository remotes or Git identity and does not create a commit. Use focused, meaningful commits when requested.
 
-The next intended task is **Phase 5 — Cryptocurrency Analytics**, requiring a separate request. The overview labels weather, currencies, and economy as available; unified dashboard metrics remain Phase 6 work.
+Phase 5 — Cryptocurrency Analytics is complete. The next intended task is **Phase 6 — Unified Analytics Dashboard**, requiring a separate request. The overview links all four available modules; unified dashboard metrics remain Phase 6 work and require a separate request.
 
 Deployment is owned by the user; no deployment was performed. Browser-history routing requires the chosen host to serve index.html for application routes. Add screenshots, API/testing documentation, production smoke-test evidence, and portfolio lessons as implemented functionality becomes available.
 
@@ -131,3 +131,23 @@ Level indicators use relative change with a positive starting denominator; rates
 Only the selected indicator and selected countries are queried. Country/indicator metadata caches for seven days, series for 24 hours; requests follow and validate pagination. Manual refresh retains cached results when a request fails. Dataset update dates are distinct from observation years. Annual data can be delayed or revised.
 
 See [Economy API contract](docs/ECONOMY_API_CONTRACT.md) and [Phase 4 verification](docs/PHASE_4_VERIFICATION.md) for provider findings, executed checks, and browser verification limits.
+
+## Cryptocurrency Analytics
+
+`/crypto` opens Bitcoin by default (or the session's last selected asset). `/crypto/:coinId` supports shareable detail routes. The module includes global USD market cap and volume, BTC/ETH dominance, a filterable top-50 market table, selected-asset price/change/cap/volume/high/low/supply, and 24H/7D/30D/1Y price history with an accessible data table. Provider IDs identify assets; symbols are display labels. Missing metrics stay unavailable and failed refreshes preserve cached data.
+
+To configure local access:
+
+1. Obtain a CoinGecko Demo API key.
+2. Copy `.env.example` to `.env.local` and set `COINGECKO_API_KEY` privately.
+3. Restart `npm run dev` (or `npm run preview` for a local build preview).
+
+Never use a `VITE_` prefix for the key. `.env` and `.env.local` are ignored. The browser calls `/api/crypto/*`; only the server injects the provider authentication header. Without a key, the UI reports a configuration error.
+
+The proxy uses native Fetch, Zod validation, fixed provider routes, bounded caching, request coalescing, and a per-process request budget. There is no polling, remote search, WebSocket stream, or extra dependency. Table filtering is local. Provider history is limited to 365 days; historical intervals are retained rather than converted into invented daily values.
+
+**Production needs a server boundary:** static `dist/` hosting alone cannot serve `/api/crypto/*`. Mount the reusable `createCryptoProxy` handler from `server/crypto/proxy.ts` in the chosen server/serverless runtime and set the secret there. `server/crypto/vite.ts` is the local development/preview adapter, not a production server. Deployment remains user-owned.
+
+See [Crypto API contract](docs/CRYPTO_API_CONTRACT.md) for endpoints, provider evidence, caching, safe errors, and security limits.
+
+See [Phase 5 verification](docs/PHASE_5_VERIFICATION.md) for the 252-test result, security checks, and live/browser verification limits.
