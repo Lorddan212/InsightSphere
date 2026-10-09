@@ -20,7 +20,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
             to={path}
             onClick={onNavigate}
             className={({ isActive }) =>
-              `flex min-h-12 items-center gap-3 rounded-lg px-3 text-sm font-medium focus-visible:outline-white ${isActive ? 'bg-[#314d72] text-white' : 'text-slate-300 hover:bg-[#243d5b] hover:text-white'}`
+              `flex min-h-12 items-center gap-3 rounded-lg border-l-4 px-3 text-sm focus-visible:outline-white ${isActive ? 'border-current bg-[#314d72] font-bold text-white' : 'border-transparent font-medium text-slate-300 hover:bg-[#243d5b] hover:text-white'}`
             }
           >
             <Icon aria-hidden="true" size={19} />
@@ -36,7 +36,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
           </p>
         </div>
         <p className="px-2 pt-5 text-xs text-slate-300">
-          InsightSphere / Preview
+          InsightSphere / Analytics
         </p>
       </div>
     </div>

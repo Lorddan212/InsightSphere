@@ -1,8 +1,8 @@
 # InsightSphere Development Roadmap
 
-## Current Phase: Phase 6 — Unified Analytics Dashboard
+## Current Phase: Phase 7 — Professional Product Features
 
-Phases 0–5 are complete. Phase 6 is complete: Unified Analytics Dashboard. Phase 7 is not authorized. Deployment remains with the user.
+Phases 0–6 are complete. Phase 7 is complete: Professional Product Features. Phase 8 is not authorized. Deployment remains with the user.
 
 ## Phase 0 — Project Foundation
 
@@ -197,7 +197,7 @@ Never expose confidential API credentials in the Vite frontend.
 
 ## Phase 6 — Unified Analytics Dashboard
 
-Status: Complete. Independent summaries, saved selections, compact trends, source-specific freshness, shared caches, retry/refresh controls, and failure isolation are implemented. See [Phase 6 verification](PHASE_6_VERIFICATION.md) for the 278-test result and browser verification limits. Phase 7 remains unstarted.
+Status: Complete. Independent summaries, saved selections, compact trends, source-specific freshness, shared caches, retry/refresh controls, and failure isolation are implemented. See [Phase 6 verification](PHASE_6_VERIFICATION.md) for the 278-test result and browser verification limits.
 
 Goal:
 
@@ -223,6 +223,8 @@ One API failing must not necessarily make the entire dashboard unusable.
 ---
 
 ## Phase 7 — Professional Product Features
+
+Status: Complete. Settings reset, crypto sorting, theme startup, route recovery, and targeted accessibility improvements are verified by 303 passing tests. No new providers or dependencies. See [Phase 7 verification](PHASE_7_VERIFICATION.md) for the gap analysis, checks, deferrals, and browser limitations. Phase 8 has not started.
 
 Goal:
 

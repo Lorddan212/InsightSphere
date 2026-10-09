@@ -7,9 +7,11 @@ import {
   formatUpdated,
 } from '../../crypto/utils/crypto'
 import { SummaryCard, SummaryValue } from './SummaryCard'
+import { Button } from '../../../components/ui/Button'
+import { ApiError } from '../../../lib/api/request'
 
 export function CryptoSummary() {
-  const { preferences } = useCryptoPreferences()
+  const { preferences, save } = useCryptoPreferences()
   const { asset, global } = useCryptoSnapshot(preferences.coinId)
   const quote = asset.data
   const market = global.data
@@ -37,6 +39,13 @@ export function CryptoSummary() {
         label="Selected asset price · USD"
         value={formatPrice(quote?.price ?? null)}
       />
+      {asset.error instanceof ApiError &&
+        asset.error.status === 404 &&
+        preferences.coinId !== 'bitcoin' && (
+          <Button onClick={() => save({ coinId: 'bitcoin' })}>
+            Use Bitcoin instead
+          </Button>
+        )}
       <p className="text-sm text-muted">
         24-hour change: {formatChange(quote?.change24h ?? null)}
       </p>

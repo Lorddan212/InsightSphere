@@ -110,7 +110,12 @@ export function EconomicComparison({
               </div>
             ) : null,
           )}
-          <div className="overflow-x-auto">
+          <div
+            className="overflow-x-auto"
+            role="region"
+            aria-label="Scrollable country comparison"
+            tabIndex={0}
+          >
             <table className="w-full text-left text-sm tabular-nums">
               <caption className="pb-3 text-left text-muted">
                 {indicator.name} · {indicator.unit}

@@ -4,12 +4,14 @@ import { Outlet, useLocation } from 'react-router'
 import { Sidebar } from './Sidebar'
 import { Button } from '../ui/Button'
 import { PageSkeleton } from '../ui/States'
+import { FeatureErrorBoundary } from '../ui/FeatureErrorBoundary'
 import { navigation } from '../../app/navigation'
 
 export function DashboardLayout() {
   const dialog = useRef<HTMLDialogElement>(null)
   const menuButton = useRef<HTMLButtonElement>(null)
   const main = useRef<HTMLElement>(null)
+  const closingForNavigation = useRef(false)
   const { pathname } = useLocation()
   const title =
     navigation.find(
@@ -17,17 +19,33 @@ export function DashboardLayout() {
         item.path === pathname ||
         (item.path === '/crypto' && /^\/crypto\/[^/]+$/.test(pathname)),
     )?.title ?? 'Page not found'
+  const pageTitle =
+    (
+      {
+        Overview: 'Analytics Overview',
+        Weather: 'Weather Analytics',
+        Currencies: 'Currency Analytics',
+        Economy: 'Economic Analytics',
+        Crypto: 'Cryptocurrency Analytics',
+      } as Record<string, string>
+    )[title] ?? title
   useEffect(() => {
-    document.title = `${title} | InsightSphere`
+    document.title = `${pageTitle} | InsightSphere`
     main.current?.focus({ preventScroll: true })
-  }, [pathname, title])
+  }, [pathname, pageTitle])
   useEffect(() => {
     const breakpoint = window.matchMedia('(min-width: 1024px)')
     const close = () => {
-      if (breakpoint.matches) dialog.current?.close()
+      if (breakpoint.matches && dialog.current?.open) {
+        closingForNavigation.current = true
+        dialog.current.close()
+      }
     }
     breakpoint.addEventListener('change', close)
-    return () => breakpoint.removeEventListener('change', close)
+    return () => {
+      breakpoint.removeEventListener('change', close)
+      document.body.style.overflow = ''
+    }
   }, [])
   return (
     <div className="min-h-dvh">
@@ -35,7 +53,7 @@ export function DashboardLayout() {
         href="#main-content"
         className="fixed left-4 top-4 z-50 -translate-y-24 rounded-lg bg-panel p-3 text-ink focus:translate-y-0"
       >
-        Skip to content
+        Skip to main content
       </a>
       <aside className="fixed inset-y-0 left-0 hidden w-64 lg:block">
         <Sidebar />
@@ -45,7 +63,10 @@ export function DashboardLayout() {
         aria-label="Navigation menu"
         onClose={() => {
           document.body.style.overflow = ''
-          menuButton.current?.focus()
+          if (closingForNavigation.current)
+            main.current?.focus({ preventScroll: true })
+          else menuButton.current?.focus()
+          closingForNavigation.current = false
         }}
         onClick={(event) => {
           if (event.target === event.currentTarget) dialog.current?.close()
@@ -59,7 +80,12 @@ export function DashboardLayout() {
         >
           <X size={20} />
         </button>
-        <Sidebar onNavigate={() => dialog.current?.close()} />
+        <Sidebar
+          onNavigate={() => {
+            closingForNavigation.current = true
+            dialog.current?.close()
+          }}
+        />
       </dialog>
       <div className="lg:pl-64">
         <header className="flex h-20 items-center justify-between gap-3 border-b border-line bg-panel px-5 sm:px-9">
@@ -84,9 +110,6 @@ export function DashboardLayout() {
               <span className="font-medium text-ink">{title}</span>
             </span>
           </div>
-          <span className="rounded-full border border-line px-3 py-1.5 text-xs text-muted">
-            Preview workspace
-          </span>
         </header>
         <main
           ref={main}
@@ -94,9 +117,11 @@ export function DashboardLayout() {
           tabIndex={-1}
           className="mx-auto max-w-[1600px] p-5 outline-none sm:p-9 lg:p-10"
         >
-          <Suspense fallback={<PageSkeleton />}>
-            <Outlet />
-          </Suspense>
+          <FeatureErrorBoundary key={pathname}>
+            <Suspense fallback={<PageSkeleton />}>
+              <Outlet />
+            </Suspense>
+          </FeatureErrorBoundary>
         </main>
         <footer className="mx-5 flex flex-wrap justify-between gap-2 border-t border-line py-5 text-xs text-muted sm:mx-9 lg:mx-10">
           <span>InsightSphere</span>

@@ -246,9 +246,13 @@ describe('Cryptocurrency Analytics', () => {
     )
     renderPage()
     expect(
-      (await screen.findAllByText(/Set COINGECKO_API_KEY on the server/))
-        .length,
+      (
+        await screen.findAllByText(
+          /Cryptocurrency data is not available in this workspace yet/,
+        )
+      ).length,
     ).toBeGreaterThan(0)
+    expect(screen.queryByText(/COINGECKO_API_KEY/)).not.toBeInTheDocument()
     expect(
       screen.queryByText('Do not display untrusted error text'),
     ).not.toBeInTheDocument()

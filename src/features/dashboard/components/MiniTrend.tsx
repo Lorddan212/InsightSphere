@@ -86,7 +86,12 @@ export function MiniTrend({
         <summary className="cursor-pointer rounded py-2">
           View trend values
         </summary>
-        <div className="max-h-48 overflow-auto">
+        <div
+          className="max-h-48 overflow-auto"
+          role="group"
+          aria-label={`${title} observations`}
+          tabIndex={0}
+        >
           <table className="w-full text-left">
             <caption className="sr-only">{title}</caption>
             <thead>

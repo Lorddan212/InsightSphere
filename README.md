@@ -2,7 +2,7 @@
 
 Multi-API Analytics Dashboard — a portfolio project for meaningful KPIs, trends, comparisons, and drill-down analysis.
 
-**Current phase: Phase 6 — Unified Analytics Dashboard. Status: Complete.** The overview at `/` summarizes Open-Meteo weather, Frankfurter currency rates, World Bank economic indicators, and CoinGecko markets. Detailed analysis remains at `/weather`, `/currencies`, `/economy`, and `/crypto`. Crypto requires a server-side Demo API key.
+**Current phase: Phase 7 — Professional Product Features. Status: Complete.** The overview at `/` summarizes Open-Meteo weather, Frankfurter currency rates, World Bank economic indicators, and CoinGecko markets. Detailed analysis remains at `/weather`, `/currencies`, `/economy`, and `/crypto`. Crypto requires a server-side Demo API key.
 
 ## Local development
 
@@ -80,7 +80,7 @@ Weather, currency, and economy require no environment variables. Crypto requires
 
 Git is initialized locally. Phase 1 does not change repository remotes or Git identity and does not create a commit. Use focused, meaningful commits when requested.
 
-Phases 0–5 are complete. Phase 6 unifies the four domains in the overview. **Phase 7 — Professional Product Features** requires a separate request and has not started.
+Phases 0–6 are complete. Phase 7 improves the existing product's preferences, tables, appearance startup, navigation and recovery. **Phase 8 — Testing, Quality & Performance** requires a separate request and has not started.
 
 Deployment is owned by the user; no deployment was performed. Browser-history routing requires the chosen host to serve index.html for application routes. Add screenshots, API/testing documentation, production smoke-test evidence, and portfolio lessons as implemented functionality becomes available.
 
@@ -157,3 +157,13 @@ See [Phase 5 verification](docs/PHASE_5_VERIFICATION.md) for the 252-test result
 The overview follows each domain's saved session selection and offers independent refresh/retry controls and detailed-page links. Weather shows current conditions and a 24-hour trend; currencies show the latest reference rate and selected-period movement; economy shows one country's indicator, annual trend, and actual observation year; crypto shows the selected USD quote and global market cap/volume. Compact charts include expandable data tables.
 
 Existing feature query keys, validation, calculations, and freshness policies are shared. The overview does not load economic comparison countries or crypto rankings/history. A failed provider leaves the other summaries usable; failed refreshes retain cached data with a notice. Provider observation dates remain separate from cache freshness. See [Phase 6 verification](docs/PHASE_6_VERIFICATION.md) for request budgets, test evidence, and browser verification limits.
+
+## Phase 7 behavior
+
+Settings retains Light/Dark/System appearance and explains how each feature's last selection becomes the overview's default. Appearance persists across visits; analytics selections persist in the current tab across navigation and reloads. A confirmed reset restores System appearance and established domain defaults while preserving unrelated storage and cached data. Storage failures produce inline feedback. Existing feature editors remain the single place to change selections.
+
+The crypto market table combines its existing filter with keyboard-operable sorting by rank, price, 24-hour change, market cap and volume. Missing values remain last in either direction, equal values keep their order, and cached query data is not mutated. Unavailable saved crypto assets offer explicit Bitcoin recovery; unknown deep links retain their own error state.
+
+Unexpected route rendering errors now preserve the shell and provide retry/reload/navigation recovery. Mobile navigation restores focus to content after selection and to its trigger after dismissal. Active links have a border and heavier text as well as `aria-current`. Remaining historical/comparison table scroll regions are keyboard-focusable. A small startup script applies appearance before React loads; favicon and full route document titles use InsightSphere branding.
+
+Global search, toast infrastructure, duplicate default editors, generic table engines and additional URL-state systems were deliberately deferred. No new dependencies. See [Phase 7 verification](docs/PHASE_7_VERIFICATION.md) for the gap analysis, test evidence, and manual verification limits.

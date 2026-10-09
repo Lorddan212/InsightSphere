@@ -11,13 +11,17 @@ export const DEFAULT_LOCATION: WeatherLocation = {
   longitude: 7.49508,
   timezone: 'Africa/Lagos',
 }
-const STORAGE_KEY = 'insightsphere.weather.location'
+export const WEATHER_STORAGE_KEY = 'insightsphere.weather.location'
 let sessionLocation = DEFAULT_LOCATION
+
+export function resetWeatherLocationMemory() {
+  sessionLocation = DEFAULT_LOCATION
+}
 
 function readLocation() {
   try {
     const raw: unknown = JSON.parse(
-      sessionStorage.getItem(STORAGE_KEY) ?? 'null',
+      sessionStorage.getItem(WEATHER_STORAGE_KEY) ?? 'null',
     )
     const parsed = locationSchema.safeParse(raw)
     if (parsed.success) return parsed.data
@@ -33,7 +37,7 @@ export function useWeatherLocation() {
     sessionLocation = value
     setLocation(value)
     try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(value))
+      sessionStorage.setItem(WEATHER_STORAGE_KEY, JSON.stringify(value))
     } catch {
       /* Selection remains available in memory. */
     }

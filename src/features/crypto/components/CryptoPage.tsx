@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router'
+import { RefreshCw } from 'lucide-react'
 import { PageHeader } from '../../../components/layout/PageHeader'
 import { Button } from '../../../components/ui/Button'
 import { Card } from '../../../components/ui/Card'
@@ -40,6 +41,7 @@ export default function CryptoPage() {
         description="Understand market scale, daily activity, and historical prices. All monetary values are in USD."
         action={
           <Button onClick={refresh} disabled={fetching}>
+            <RefreshCw aria-hidden="true" size={16} />
             {fetching ? 'Updating crypto…' : 'Refresh crypto'}
           </Button>
         }
@@ -130,7 +132,7 @@ export default function CryptoPage() {
             )}
           </>
         )}
-        {(coinId || !valid) && (
+        {(coinId || !valid || (selectedError && id !== 'bitcoin')) && (
           <Link
             to="/crypto"
             onClick={() => save({ coinId: 'bitcoin' })}

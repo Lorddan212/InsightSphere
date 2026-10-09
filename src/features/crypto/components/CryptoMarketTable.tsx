@@ -1,8 +1,22 @@
 import { useState } from 'react'
+import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 import { Link } from 'react-router'
 import type { CryptoAsset } from '../types/crypto'
 import { formatCompact, formatPrice, formatUpdated } from '../utils/crypto'
 import { Change } from './CryptoMetrics'
+import {
+  sortAssets,
+  type AssetSortKey,
+  type SortDirection,
+} from '../utils/sortAssets'
+
+const columns: { key: AssetSortKey; label: string }[] = [
+  { key: 'rank', label: 'Rank' },
+  { key: 'price', label: 'Price' },
+  { key: 'change24h', label: '24h change' },
+  { key: 'marketCap', label: 'Market cap' },
+  { key: 'volume', label: '24h volume' },
+]
 
 export function CryptoMarketTable({
   assets,
@@ -14,11 +28,43 @@ export function CryptoMarketTable({
   onSelect: (id: string) => void
 }) {
   const [filter, setFilter] = useState('')
-  const rows = assets.filter((asset) =>
+  const [sort, setSort] = useState<{
+    key: AssetSortKey
+    direction: SortDirection
+  }>({ key: 'rank', direction: 'ascending' })
+  const rows = sortAssets(assets, sort.key, sort.direction).filter((asset) =>
     `${asset.name} ${asset.symbol} ${asset.id}`
       .toLowerCase()
       .includes(filter.trim().toLowerCase()),
   )
+  function heading(key: AssetSortKey, label: string) {
+    const active = sort.key === key
+    const direction =
+      active && sort.direction === 'ascending' ? 'descending' : 'ascending'
+    const Icon = active
+      ? sort.direction === 'ascending'
+        ? ArrowUp
+        : ArrowDown
+      : ArrowUpDown
+    return (
+      <th
+        key={key}
+        scope="col"
+        aria-sort={active ? sort.direction : undefined}
+        className="px-4 py-1 text-right"
+      >
+        <button
+          type="button"
+          onClick={() => setSort({ key, direction })}
+          aria-label={`Sort by ${label.toLowerCase()}, ${direction}`}
+          className="ml-auto flex min-h-11 items-center gap-1 rounded font-semibold"
+        >
+          {label}
+          <Icon size={14} aria-hidden="true" />
+        </button>
+      </th>
+    )
+  }
   return (
     <section aria-labelledby="market-heading">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
@@ -40,6 +86,11 @@ export function CryptoMarketTable({
           />
         </label>
       </div>
+      <p role="status" className="mb-3 text-xs text-muted">
+        {rows.length} of {assets.length} assets · Sorted by{' '}
+        {columns.find((column) => column.key === sort.key)?.label.toLowerCase()}
+        , {sort.direction}. Missing values appear last.
+      </p>
       <div
         className="overflow-x-auto rounded-xl border border-line bg-panel"
         role="region"
@@ -52,18 +103,11 @@ export function CryptoMarketTable({
           </caption>
           <thead className="border-b border-line text-xs text-muted">
             <tr>
-              {[
-                'Rank',
-                'Asset',
-                'Price',
-                '24h change',
-                'Market cap',
-                '24h volume',
-              ].map((title) => (
-                <th scope="col" key={title} className="px-4 py-4">
-                  {title}
-                </th>
-              ))}
+              {heading('rank', 'Rank')}
+              <th scope="col" className="px-4 py-4">
+                Asset
+              </th>
+              {columns.slice(1).map(({ key, label }) => heading(key, label))}
             </tr>
           </thead>
           <tbody>
@@ -72,7 +116,7 @@ export function CryptoMarketTable({
                 key={asset.id}
                 className={`border-b border-line last:border-0 ${selectedId === asset.id ? 'bg-soft' : ''}`}
               >
-                <td className="px-4 py-4">{asset.rank ?? '—'}</td>
+                <td className="px-4 py-4 text-right">{asset.rank ?? '—'}</td>
                 <th scope="row" className="px-4 py-2 font-medium">
                   <Link
                     to={`/crypto/${asset.id}`}
@@ -105,12 +149,18 @@ export function CryptoMarketTable({
                     {formatUpdated(asset.updatedAt)}
                   </span>
                 </th>
-                <td className="px-4 py-4">{formatPrice(asset.price)}</td>
-                <td className="px-4 py-4">
+                <td className="px-4 py-4 text-right">
+                  {formatPrice(asset.price)}
+                </td>
+                <td className="px-4 py-4 text-right">
                   <Change value={asset.change24h} />
                 </td>
-                <td className="px-4 py-4">{formatCompact(asset.marketCap)}</td>
-                <td className="px-4 py-4">{formatCompact(asset.volume)}</td>
+                <td className="px-4 py-4 text-right">
+                  {formatCompact(asset.marketCap)}
+                </td>
+                <td className="px-4 py-4 text-right">
+                  {formatCompact(asset.volume)}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -46,8 +46,8 @@ export const CRYPTO_ERRORS = {
     'This asset is unavailable. Choose an asset from the market table.',
   METHOD: 'This request method is not supported.',
   NOT_CONFIGURED:
-    'Crypto is not configured. Set COINGECKO_API_KEY on the server and restart it.',
-  AUTH: 'CoinGecko authentication failed. Check the server API configuration.',
+    'Cryptocurrency data is not available in this workspace yet. You can continue using weather, currency, and economy analytics.',
+  AUTH: 'Cryptocurrency data is temporarily unavailable. Please try again later.',
   RATE_LIMIT:
     'Crypto requests are temporarily rate limited. Wait before trying again.',
   PROVIDER: 'CoinGecko is temporarily unavailable. Try again later.',

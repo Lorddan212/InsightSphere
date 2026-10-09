@@ -126,7 +126,12 @@ export function ExchangeRateChart({
         <summary className="min-h-11 cursor-pointer text-sm font-medium text-accent">
           View historical data table
         </summary>
-        <div className="max-h-80 overflow-auto">
+        <div
+          className="max-h-80 overflow-auto"
+          role="region"
+          aria-label="Scrollable currency observations"
+          tabIndex={0}
+        >
           <table className="w-full text-left text-sm tabular-nums">
             <caption className="pb-3 text-left text-muted">
               Actual reference observations. Rate in {quote} for 1 {base}.
