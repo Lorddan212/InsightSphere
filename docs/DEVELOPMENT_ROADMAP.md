@@ -1,8 +1,8 @@
 # InsightSphere Development Roadmap
 
-## Current Phase: Phase 5 — Cryptocurrency Analytics
+## Current Phase: Phase 6 — Unified Analytics Dashboard
 
-Phases 0–4 are complete. Phase 5 is complete: Cryptocurrency Analytics. Phase 6 is not authorized. Deployment remains with the user.
+Phases 0–5 are complete. Phase 6 is complete: Unified Analytics Dashboard. Phase 7 is not authorized. Deployment remains with the user.
 
 ## Phase 0 — Project Foundation
 
@@ -196,6 +196,8 @@ Never expose confidential API credentials in the Vite frontend.
 ---
 
 ## Phase 6 — Unified Analytics Dashboard
+
+Status: Complete. Independent summaries, saved selections, compact trends, source-specific freshness, shared caches, retry/refresh controls, and failure isolation are implemented. See [Phase 6 verification](PHASE_6_VERIFICATION.md) for the 278-test result and browser verification limits. Phase 7 remains unstarted.
 
 Goal:
 

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 import {
   fetchAsset,
   fetchGlobal,
@@ -14,17 +14,25 @@ const policy = {
   retry: false,
   refetchOnWindowFocus: false,
 } as const
-export function useCryptoQueries(
-  id: string,
-  period: CryptoPeriod,
-  valid: boolean,
-) {
-  const global = useQuery({
+export const globalOptions = () =>
+  queryOptions({
     queryKey: cryptoKeys.global(),
     queryFn: ({ signal }) => fetchGlobal(signal),
     ...policy,
     staleTime: 120000,
   })
+export const assetOptions = (id: string) =>
+  queryOptions({
+    queryKey: cryptoKeys.asset(id),
+    queryFn: ({ signal }) => fetchAsset(id, signal),
+    ...policy,
+  })
+export function useCryptoQueries(
+  id: string,
+  period: CryptoPeriod,
+  valid: boolean,
+) {
+  const global = useQuery(globalOptions())
   const markets = useQuery({
     queryKey: cryptoKeys.markets(),
     queryFn: ({ signal }) => fetchMarkets(signal),
@@ -33,9 +41,7 @@ export function useCryptoQueries(
   // Reuse the list's quote. Only deep links outside the top 50 need a detail request.
   const listed = markets.data?.find((asset) => asset.id === id)
   const asset = useQuery({
-    queryKey: cryptoKeys.asset(id),
-    queryFn: ({ signal }) => fetchAsset(id, signal),
-    ...policy,
+    ...assetOptions(id),
     enabled: valid && !listed && !markets.isPending,
   })
   const selected = listed ?? asset.data

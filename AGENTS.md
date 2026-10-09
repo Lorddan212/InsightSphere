@@ -6,9 +6,9 @@ InsightSphere — Multi-API Analytics Dashboard is a portfolio-grade analytics p
 
 ## Current Development Phase
 
-### Current Phase: Phase 5 — Cryptocurrency Analytics
+### Current Phase: Phase 6 — Unified Analytics Dashboard
 
-Status: Complete. Phases 0–4 are complete. Phase 5 is authorized for Cryptocurrency Analytics only. Phase 6 requires a separate request. Deployment is owned by the user. Preserve MSW 2.15.0 and TypeScript 6.0.3. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
+Status: Complete. Phases 0–5 are complete. Phase 6 is authorized for the Unified Analytics Dashboard only. Phase 7 requires a separate request. Deployment is owned by the user. Preserve MSW 2.15.0 and TypeScript 6.0.3. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
 
 ## Technology Stack
 

@@ -2,7 +2,7 @@
 
 Multi-API Analytics Dashboard — a portfolio project for meaningful KPIs, trends, comparisons, and drill-down analysis.
 
-**Current phase: Phase 5 — Cryptocurrency Analytics. Status: Complete.** The shell includes Open-Meteo weather analytics at /weather, Frankfurter currency analytics at /currencies, World Bank economic analytics at /economy, and CoinGecko cryptocurrency analytics at /crypto. Crypto requires a server-side Demo API key.
+**Current phase: Phase 6 — Unified Analytics Dashboard. Status: Complete.** The overview at `/` summarizes Open-Meteo weather, Frankfurter currency rates, World Bank economic indicators, and CoinGecko markets. Detailed analysis remains at `/weather`, `/currencies`, `/economy`, and `/crypto`. Crypto requires a server-side Demo API key.
 
 ## Local development
 
@@ -74,13 +74,13 @@ Open-Meteo, Frankfurter, and World Bank are connected. CoinGecko uses a same-ori
 
 ## Environment and security
 
-No environment variables are required. .env.example records this. Real .env files are ignored; examples must never contain secrets. Every VITE_* variable is public browser data. Confidential credentials belong in server-side infrastructure, never the frontend bundle.
+Weather, currency, and economy require no environment variables. Crypto requires server-only `COINGECKO_API_KEY`, documented in `.env.example`. Real `.env` files are ignored; examples must never contain secrets. Every `VITE_*` variable is public browser data. Confidential credentials belong in server-side infrastructure, never the frontend bundle.
 
 ## Project workflow
 
 Git is initialized locally. Phase 1 does not change repository remotes or Git identity and does not create a commit. Use focused, meaningful commits when requested.
 
-Phase 5 — Cryptocurrency Analytics is complete. The next intended task is **Phase 6 — Unified Analytics Dashboard**, requiring a separate request. The overview links all four available modules; unified dashboard metrics remain Phase 6 work and require a separate request.
+Phases 0–5 are complete. Phase 6 unifies the four domains in the overview. **Phase 7 — Professional Product Features** requires a separate request and has not started.
 
 Deployment is owned by the user; no deployment was performed. Browser-history routing requires the chosen host to serve index.html for application routes. Add screenshots, API/testing documentation, production smoke-test evidence, and portfolio lessons as implemented functionality becomes available.
 
@@ -151,3 +151,9 @@ The proxy uses native Fetch, Zod validation, fixed provider routes, bounded cach
 See [Crypto API contract](docs/CRYPTO_API_CONTRACT.md) for endpoints, provider evidence, caching, safe errors, and security limits.
 
 See [Phase 5 verification](docs/PHASE_5_VERIFICATION.md) for the 252-test result, security checks, and live/browser verification limits.
+
+## Phase 6 behavior
+
+The overview follows each domain's saved session selection and offers independent refresh/retry controls and detailed-page links. Weather shows current conditions and a 24-hour trend; currencies show the latest reference rate and selected-period movement; economy shows one country's indicator, annual trend, and actual observation year; crypto shows the selected USD quote and global market cap/volume. Compact charts include expandable data tables.
+
+Existing feature query keys, validation, calculations, and freshness policies are shared. The overview does not load economic comparison countries or crypto rankings/history. A failed provider leaves the other summaries usable; failed refreshes retain cached data with a notice. Provider observation dates remain separate from cache freshness. See [Phase 6 verification](docs/PHASE_6_VERIFICATION.md) for request budgets, test evidence, and browser verification limits.
