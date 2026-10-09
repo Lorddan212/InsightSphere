@@ -1,8 +1,8 @@
 # InsightSphere Development Roadmap
 
-## Current Phase: Phase 7 — Professional Product Features
+## Current Phase: Phase 8 — Testing, Quality & Performance
 
-Phases 0–6 are complete. Phase 7 is complete: Professional Product Features. Phase 8 is not authorized. Deployment remains with the user.
+Phases 0–8 are complete. Phase 9 is not authorized. Deployment remains with the user. See Phase 8 verification for remaining browser and live-provider checks.
 
 ## Phase 0 — Project Foundation
 
@@ -224,7 +224,7 @@ One API failing must not necessarily make the entire dashboard unusable.
 
 ## Phase 7 — Professional Product Features
 
-Status: Complete. Settings reset, crypto sorting, theme startup, route recovery, and targeted accessibility improvements are verified by 303 passing tests. No new providers or dependencies. See [Phase 7 verification](PHASE_7_VERIFICATION.md) for the gap analysis, checks, deferrals, and browser limitations. Phase 8 has not started.
+Status: Complete. Settings reset, crypto sorting, theme startup, route recovery, and targeted accessibility improvements are verified by 303 passing tests. No new providers or dependencies. See [Phase 7 verification](PHASE_7_VERIFICATION.md) for the gap analysis, checks, deferrals, and browser limitations.
 
 Goal:
 
@@ -255,6 +255,8 @@ Do not add features that provide no meaningful user value.
 ---
 
 ## Phase 8 — Testing, Quality & Performance
+
+Status: Complete. All 323 tests, lint, strict build, formatting and whitespace checks pass. Test isolation, HTTP failure coverage, proxy namespace routing, Node requirements and dead-code cleanup are verified. See [Phase 8 verification](PHASE_8_VERIFICATION.md) for the severity audit, dependency review, bundle/security evidence and outstanding browser/live-provider checks. Phase 9 has not started.
 
 Goal:
 

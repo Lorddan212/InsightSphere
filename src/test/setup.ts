@@ -2,6 +2,8 @@ import '@testing-library/jest-dom/vitest'
 import { afterAll, afterEach, beforeAll, beforeEach, expect, vi } from 'vitest'
 import { cleanup, configure } from '@testing-library/react'
 import { server } from './server'
+import { restoreBrowserMocks } from './browserMocks'
+import { resetWeatherLocationMemory } from '../features/weather/hooks/useWeatherLocation'
 
 const unexpectedRequests: string[] = []
 
@@ -23,6 +25,7 @@ beforeAll(() => {
   })
 })
 beforeEach(() => {
+  vi.stubGlobal('ResizeObserver', ResizeObserverStub)
   vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue(
     new DOMRect(0, 0, 800, 300),
   )
@@ -30,7 +33,15 @@ beforeEach(() => {
 afterEach(() => {
   cleanup()
   server.resetHandlers()
+  vi.restoreAllMocks()
+  vi.unstubAllGlobals()
+  restoreBrowserMocks()
   sessionStorage.clear()
+  localStorage.clear()
+  resetWeatherLocationMemory()
+  delete document.documentElement.dataset.theme
+  document.body.style.overflow = ''
+  document.title = ''
   vi.useRealTimers()
   // A caught network error must not accidentally make an unmocked test pass.
   const unexpected = unexpectedRequests.splice(0)
@@ -44,4 +55,3 @@ class ResizeObserverStub {
   unobserve() {}
   disconnect() {}
 }
-vi.stubGlobal('ResizeObserver', ResizeObserverStub)

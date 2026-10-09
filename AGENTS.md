@@ -6,9 +6,9 @@ InsightSphere — Multi-API Analytics Dashboard is a portfolio-grade analytics p
 
 ## Current Development Phase
 
-### Current Phase: Phase 7 — Professional Product Features
+### Current Phase: Phase 8 — Testing, Quality & Performance
 
-Status: Complete. Phases 0–6 are complete. Phase 7 is authorized for Professional Product Features only. Phase 8 requires a separate request. Deployment is owned by the user. Preserve MSW 2.15.0 and TypeScript 6.0.3. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
+Status: Complete. Phases 0–7 are complete. Phase 8 verification and remaining browser/live-provider limits are recorded in docs/PHASE_8_VERIFICATION.md. Phase 9 requires a separate request. Deployment is owned by the user. Preserve MSW 2.15.0 and TypeScript 6.0.3. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
 
 ## Technology Stack
 

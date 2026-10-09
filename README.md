@@ -2,11 +2,11 @@
 
 Multi-API Analytics Dashboard — a portfolio project for meaningful KPIs, trends, comparisons, and drill-down analysis.
 
-**Current phase: Phase 7 — Professional Product Features. Status: Complete.** The overview at `/` summarizes Open-Meteo weather, Frankfurter currency rates, World Bank economic indicators, and CoinGecko markets. Detailed analysis remains at `/weather`, `/currencies`, `/economy`, and `/crypto`. Crypto requires a server-side Demo API key.
+**Current phase: Phase 8 — Testing, Quality & Performance. Status: Complete.** The overview at `/` summarizes Open-Meteo weather, Frankfurter currency rates, World Bank economic indicators, and CoinGecko markets. Detailed analysis remains at `/weather`, `/currencies`, `/economy`, and `/crypto`. Crypto requires a server-side Demo API key.
 
 ## Local development
 
-Use Node.js 22.13+ on the 22.x line, or Node.js 24+ (recommended) and npm. Initialized with Node.js 24.19.0 and npm 11.10.0.
+Use Node.js 22.22.2+ on the 22.x line, 24.15+ on the 24.x line (recommended), or 26+ and npm. These minimums match the locked development dependencies. Initialized with Node.js 24.19.0 and npm 11.10.0.
 
 ```sh
 npm ci --include=dev
@@ -46,7 +46,7 @@ src/
 
 Braces abbreviate separate directories. Empty directories exist locally without placeholder source files; Git does not preserve them in a fresh clone. Create them when adding their first real files. Vite client types are configured in tsconfig.app.json, so no duplicate vite-env.d.ts is needed.
 
-Keep domain logic in its feature. Global hooks, schemas, types, and utilities are for genuinely shared concerns only. Future API flow: service → runtime validation → normalization → TanStack Query hook → UI. See [AGENTS.md](AGENTS.md) for operating rules and [the roadmap](docs/DEVELOPMENT_ROADMAP.md) for all ten phases.
+Keep domain logic in its feature. Global hooks, schemas, types, and utilities are for genuinely shared concerns only. API flow: service → runtime validation → normalization → TanStack Query hook → UI. See [AGENTS.md](AGENTS.md) for operating rules and [the roadmap](docs/DEVELOPMENT_ROADMAP.md) for all ten phases.
 
 ## Stack and dependency plan
 
@@ -80,7 +80,7 @@ Weather, currency, and economy require no environment variables. Crypto requires
 
 Git is initialized locally. Phase 1 does not change repository remotes or Git identity and does not create a commit. Use focused, meaningful commits when requested.
 
-Phases 0–6 are complete. Phase 7 improves the existing product's preferences, tables, appearance startup, navigation and recovery. **Phase 8 — Testing, Quality & Performance** requires a separate request and has not started.
+Phases 0–7 are complete. Phase 8 audits and strengthens testing, resilience, accessibility, security and performance. Phase 9 — Production & Portfolio has not started.
 
 Deployment is owned by the user; no deployment was performed. Browser-history routing requires the chosen host to serve index.html for application routes. Add screenshots, API/testing documentation, production smoke-test evidence, and portfolio lessons as implemented functionality becomes available.
 
@@ -167,3 +167,7 @@ The crypto market table combines its existing filter with keyboard-operable sort
 Unexpected route rendering errors now preserve the shell and provide retry/reload/navigation recovery. Mobile navigation restores focus to content after selection and to its trigger after dismissal. Active links have a border and heavier text as well as `aria-current`. Remaining historical/comparison table scroll regions are keyboard-focusable. A small startup script applies appearance before React loads; favicon and full route document titles use InsightSphere branding.
 
 Global search, toast infrastructure, duplicate default editors, generic table engines and additional URL-state systems were deliberately deferred. No new dependencies. See [Phase 7 verification](docs/PHASE_7_VERIFICATION.md) for the gap analysis, test evidence, and manual verification limits.
+
+## Phase 8 quality review
+
+The quality review strengthens offline failure coverage and test cleanup, constrains the local proxy middleware to its namespace, removes an unused placeholder chunk, and aligns Node requirements with the lockfile. No dependencies were upgraded. See [Phase 8 verification](docs/PHASE_8_VERIFICATION.md) for the audit, baseline, dependency findings, bundle measurements and remaining browser/live-provider verification limits. Run the full test suite separately from other heavy checks on constrained machines.

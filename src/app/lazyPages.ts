@@ -3,7 +3,6 @@ import { lazy } from 'react'
 export const DashboardOverview = lazy(
   () => import('../features/dashboard/components/DashboardOverview'),
 )
-export const DomainPage = lazy(() => import('../pages/DomainPage'))
 export const WeatherPage = lazy(
   () => import('../features/weather/components/WeatherPage'),
 )

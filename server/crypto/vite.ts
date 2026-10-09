@@ -5,7 +5,7 @@ export function cryptoProxyPlugin(apiKey: string): Plugin {
   const handle = createCryptoProxy({ apiKey })
   const middleware: Connect.NextHandleFunction = (req, res, next) => {
     const path = req.url ?? ''
-    if (!path.startsWith('/api/crypto')) return next()
+    if (!/^\/api\/crypto(?:\/|\?|$)/.test(path)) return next()
     // Use a fixed local origin, never the untrusted Host header.
     const request = new Request(`http://localhost${path}`, {
       method: req.method ?? 'GET',

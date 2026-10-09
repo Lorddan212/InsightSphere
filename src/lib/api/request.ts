@@ -29,7 +29,7 @@ export async function requestJson(
           ? 'The data provider is limiting requests. Please wait a few minutes before trying again.'
           : response.status >= 500
             ? 'The data provider is temporarily unavailable. Please try again.'
-            : 'The data provider could not accept this request. Try another location.'
+            : 'The data provider could not accept this request. Try another selection.'
       throw new ApiError('http', message, response.status)
     }
     let data: unknown

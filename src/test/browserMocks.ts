@@ -1,5 +1,19 @@
 import { vi } from 'vitest'
 
+const dialogMethods = ['showModal', 'close'] as const
+const originalDialogMethods = dialogMethods.map((name) =>
+  Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, name),
+)
+
+export function restoreBrowserMocks() {
+  dialogMethods.forEach((name, index) => {
+    const original = originalDialogMethods[index]
+    if (original)
+      Object.defineProperty(HTMLDialogElement.prototype, name, original)
+    else Reflect.deleteProperty(HTMLDialogElement.prototype, name)
+  })
+}
+
 // jsdom does not implement media queries or native modal focus behavior.
 // Tests can verify our handlers, not certify browser focus containment.
 export function mockMedia(initialDark = false) {
