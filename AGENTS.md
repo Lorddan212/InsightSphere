@@ -6,9 +6,9 @@ InsightSphere — Multi-API Analytics Dashboard is a portfolio-grade analytics p
 
 ## Current Development Phase
 
-### Current Phase: Phase 8 — Testing, Quality & Performance
+### Current Phase: Phase 9 — Production & Portfolio
 
-Status: Complete. Phases 0–7 are complete. Phase 8 verification and remaining browser/live-provider limits are recorded in docs/PHASE_8_VERIFICATION.md. Phase 9 requires a separate request. Deployment is owned by the user. Preserve MSW 2.15.0 and TypeScript 6.0.3. Update this field and the roadmap when the authorized phase changes. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working.
+Status: Complete. Planned Phases 0–9 are complete as release preparation. See docs/PROJECT_STATUS.md and docs/PHASE_9_VERIFICATION.md for deployment integration and manual verification prerequisites. Deployment, hosting account changes, credentials, commits and pushes remain user-owned. Preserve MSW 2.15.0 and TypeScript 6.0.3. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working. Further work belongs to maintenance, enhancements, bug fixes or deployment operations.
 
 ## Technology Stack
 
@@ -75,7 +75,7 @@ Use semantic HTML, keyboard-operable controls, associated labels, visible focus,
 
 ## Security Rules
 
-Ignore real `.env` files; `.env.example` contains documentation and non-secret examples only. Every `VITE_*` variable is public browser data. Never place confidential keys in frontend code, URLs, logs, fixtures, or examples. If CoinGecko needs a confidential key, implement a server-side/serverless proxy in Phase 5. Validate external data and URL parameters. Avoid `dangerouslySetInnerHTML`; any unavoidable use requires documented sanitization. Validate external URL schemes and use appropriate protections for new-tab links. Review dependency risks when adding or upgrading packages.
+Ignore real `.env` files; `.env.example` contains documentation and non-secret examples only. Every `VITE_*` variable is public browser data. Never place confidential keys in frontend code, URLs, logs, fixtures, or examples. Preserve the existing server-side CoinGecko boundary when adapting deployment infrastructure. Validate external data and URL parameters. Avoid `dangerouslySetInnerHTML`; any unavoidable use requires documented sanitization. Validate external URL schemes and use appropriate protections for new-tab links. Review dependency risks when adding or upgrading packages.
 
 ## Testing Rules
 
