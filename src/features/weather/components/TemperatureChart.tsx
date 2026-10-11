@@ -1,3 +1,4 @@
+import { chartTooltipStyle } from '../../../components/charts/chartTheme'
 import {
   CartesianGrid,
   Line,
@@ -53,7 +54,11 @@ export function TemperatureChart({
                 margin={{ top: 12, right: 16, bottom: 8, left: 0 }}
                 accessibilityLayer
               >
-                <CartesianGrid stroke="var(--line)" vertical={false} />
+                <CartesianGrid
+                  strokeOpacity={0.6}
+                  stroke="var(--line)"
+                  vertical={false}
+                />
                 <XAxis
                   dataKey="time"
                   tickFormatter={(timestamp: number) =>
@@ -83,19 +88,14 @@ export function TemperatureChart({
                     ),
                     'Temperature',
                   ]}
-                  contentStyle={{
-                    background: 'var(--panel)',
-                    borderColor: 'var(--line)',
-                    borderRadius: 8,
-                    color: 'var(--ink)',
-                  }}
+                  contentStyle={chartTooltipStyle}
                   labelStyle={{ color: 'var(--ink)' }}
                 />
                 <Line
                   name="Temperature"
                   type="linear"
                   dataKey="temperature"
-                  stroke="var(--accent)"
+                  stroke="var(--chart-weather)"
                   strokeWidth={2.5}
                   dot={
                     hourly.filter((point) => point.temperature !== null)

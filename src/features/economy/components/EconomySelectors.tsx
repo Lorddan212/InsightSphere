@@ -16,7 +16,7 @@ export function EconomySelectors({
       <label className="min-w-0 text-sm font-medium">
         Country or economy
         <select
-          className="mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-line bg-canvas px-3"
+          className="analytics-control mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-control bg-panel px-3"
           value={selection.country}
           onChange={(event) =>
             onChange({
@@ -38,7 +38,7 @@ export function EconomySelectors({
       <label className="min-w-0 text-sm font-medium">
         Economic indicator
         <select
-          className="mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-line bg-canvas px-3"
+          className="analytics-control mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-control bg-panel px-3"
           value={selection.indicator}
           onChange={(event) =>
             onChange({ ...selection, indicator: event.target.value })

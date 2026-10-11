@@ -17,7 +17,7 @@ export function CurrencySelectors({
       <label className="min-w-0 text-sm font-medium">
         Base currency
         <select
-          className="mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-line bg-canvas px-3 text-ink"
+          className="analytics-control mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-control bg-panel px-3 text-ink"
           value={selection.base}
           onChange={(event) =>
             onChange({ ...selection, base: event.target.value })
@@ -45,7 +45,7 @@ export function CurrencySelectors({
       <label className="min-w-0 text-sm font-medium">
         Quote currency
         <select
-          className="mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-line bg-canvas px-3 text-ink"
+          className="analytics-control mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-control bg-panel px-3 text-ink"
           value={selection.quote}
           onChange={(event) =>
             onChange({ ...selection, quote: event.target.value })

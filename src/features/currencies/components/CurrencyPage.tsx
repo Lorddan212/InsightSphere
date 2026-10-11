@@ -63,7 +63,7 @@ export default function CurrencyPage() {
     <>
       <PageHeader
         title="Currency Analytics"
-        description="Follow reference exchange rates, convert amounts, and explore how a currency pair changes over time."
+        description="Compare reference exchange rates, convert currencies and examine recent historical movement."
         action={
           <Button onClick={refresh} disabled={refreshing}>
             <RefreshCw aria-hidden="true" size={16} />
@@ -99,13 +99,13 @@ export default function CurrencyPage() {
             selection={selection}
             onChange={select}
           />
-          <div className="mb-6 rounded-xl bg-soft p-5">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+          <div className="analytics-panel mb-6 border-l-2 border-l-accent p-6 sm:p-7">
+            <p className="text-sm font-medium text-muted">
               {identity
                 ? 'Same-currency conversion'
                 : 'Latest published reference'}
             </p>
-            <p className="mt-2 break-words text-2xl font-semibold tabular-nums">
+            <p className="metric-value mt-3 text-2xl sm:text-3xl">
               {rate === null
                 ? `${selection.base} / ${selection.quote} · Rate unavailable`
                 : `1 ${selection.base} = ${formatRate(rate)} ${selection.quote}`}

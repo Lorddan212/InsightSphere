@@ -30,11 +30,18 @@ export function SummaryCard({
   children,
 }: Props) {
   return (
-    <section aria-labelledby={`${id}-heading`} className="min-w-0">
-      <Card className="flex h-full flex-col p-5 sm:p-6">
+    <section
+      aria-labelledby={`${id}-heading`}
+      data-domain={id}
+      className="min-w-0"
+    >
+      <Card className="summary-panel flex h-full flex-col p-5 sm:p-7">
         <div className="mb-5 flex items-start justify-between gap-3">
           <div>
-            <h2 id={`${id}-heading`} className="text-lg font-semibold">
+            <h2
+              id={`${id}-heading`}
+              className="text-lg font-semibold tracking-tight"
+            >
               {title}
             </h2>
             <p className="mt-1 text-sm text-muted">{context}</p>
@@ -44,7 +51,7 @@ export function SummaryCard({
             onClick={onRefresh}
             disabled={refreshing}
             aria-label={`${error ? 'Retry' : 'Refresh'} ${title.toLowerCase()} summary`}
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-line text-accent disabled:opacity-50"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-control text-muted transition-colors hover:border-accent hover:bg-soft hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
           >
             <RefreshCw aria-hidden="true" size={17} />
           </button>
@@ -105,9 +112,7 @@ export function SummaryValue({
   return (
     <dl>
       <dt className="text-sm text-muted">{label}</dt>
-      <dd className="mt-1 break-words text-3xl font-semibold tracking-tight tabular-nums">
-        {value}
-      </dd>
+      <dd className="metric-value mt-2 text-3xl sm:text-[2rem]">{value}</dd>
     </dl>
   )
 }

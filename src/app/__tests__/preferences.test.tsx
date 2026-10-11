@@ -92,6 +92,11 @@ describe('Appearance and preference controls', () => {
   it('persists an intentional theme and restores it after remount', async () => {
     const user = userEvent.setup()
     const first = mount()
+    expect(
+      screen.getByText(
+        'Manage appearance and locally stored InsightSphere preferences.',
+      ),
+    ).toBeInTheDocument()
     await user.click(screen.getByRole('radio', { name: /Dark/ }))
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark')
     expect(localStorage.getItem('insightsphere.theme')).toBe('dark')

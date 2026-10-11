@@ -246,6 +246,12 @@ describe('Unified analytics dashboard', () => {
   })
   it('renders four summaries, bounded trends, source-specific dates and drill-down links', async () => {
     mount()
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Analytics Overview' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(/Each provider publishes on its own schedule/),
+    ).toBeInTheDocument()
     await loaded()
     expect(card('Weather').getByText(/Abuja/)).toBeInTheDocument()
     expect(
@@ -332,7 +338,7 @@ describe('Unified analytics dashboard', () => {
     mount()
     await waitFor(() => expect(screen.getAllByRole('alert')).toHaveLength(4))
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Your analytics overview.',
+      'Analytics Overview',
     )
     expect(screen.getAllByRole('link', { name: /Explore/ })).toHaveLength(4)
   })

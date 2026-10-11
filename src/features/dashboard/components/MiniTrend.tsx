@@ -1,3 +1,4 @@
+import { chartTooltipStyle } from '../../../components/charts/chartTheme'
 import {
   CartesianGrid,
   Line,
@@ -41,8 +42,14 @@ export function MiniTrend({
             margin={{ top: 8, right: 12, bottom: 0, left: 0 }}
             accessibilityLayer={false}
           >
-            <CartesianGrid vertical={false} stroke="var(--color-line)" />
+            <CartesianGrid
+              strokeOpacity={0.6}
+              vertical={false}
+              stroke="var(--color-line)"
+            />
             <XAxis
+              axisLine={false}
+              tickLine={false}
               dataKey="x"
               type="number"
               domain={['dataMin', 'dataMax']}
@@ -53,6 +60,8 @@ export function MiniTrend({
               tick={{ fontSize: 10, fill: 'var(--color-muted)' }}
             />
             <YAxis
+              axisLine={false}
+              tickLine={false}
               width={62}
               domain={['auto', 'auto']}
               tickFormatter={format}
@@ -65,15 +74,12 @@ export function MiniTrend({
               labelFormatter={(value) =>
                 points.find((point) => point.x === value)?.label ?? ''
               }
-              contentStyle={{
-                background: 'var(--color-panel)',
-                borderColor: 'var(--color-line)',
-              }}
+              contentStyle={chartTooltipStyle}
             />
             <Line
               dataKey="value"
               name={title}
-              stroke="var(--color-accent)"
+              stroke="var(--domain-accent, var(--accent))"
               strokeWidth={2}
               dot={{ r: 2, strokeWidth: 0 }}
               connectNulls={false}
@@ -92,12 +98,14 @@ export function MiniTrend({
           aria-label={`${title} observations`}
           tabIndex={0}
         >
-          <table className="w-full text-left">
+          <table className="data-table w-full text-left">
             <caption className="sr-only">{title}</caption>
             <thead>
               <tr>
                 <th scope="col">Observation</th>
-                <th scope="col">Value</th>
+                <th scope="col" className="text-right">
+                  Value
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -106,7 +114,7 @@ export function MiniTrend({
                   <th scope="row" className="py-1 font-normal">
                     {point.label}
                   </th>
-                  <td>
+                  <td className="text-right">
                     {point.value === null ? 'Unavailable' : format(point.value)}
                   </td>
                 </tr>

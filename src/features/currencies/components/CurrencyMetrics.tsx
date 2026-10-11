@@ -62,9 +62,7 @@ export function CurrencyMetrics({
       {cards.map((card) => (
         <Card key={card.label} className="min-w-0 p-5">
           <h2 className="text-sm text-muted">{card.label}</h2>
-          <p className="mt-3 break-words text-2xl font-semibold tabular-nums">
-            {card.value}
-          </p>
+          <p className="metric-value mt-3 text-2xl">{card.value}</p>
           <p className="mt-2 text-xs leading-5 text-muted">{card.detail}</p>
         </Card>
       ))}

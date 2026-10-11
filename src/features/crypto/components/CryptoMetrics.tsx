@@ -42,9 +42,9 @@ export function GlobalMetrics({ data }: { data: GlobalCryptoMarket }) {
               : `${data.ethereumDominance.toFixed(2)}%`,
           ],
         ].map(([label, value]) => (
-          <Card key={label} className="p-4">
+          <Card key={label} className="p-5">
             <p className="text-xs text-muted">{label}</p>
-            <p className="mt-2 text-xl font-semibold tabular-nums">{value}</p>
+            <p className="metric-value mt-3 text-2xl">{value}</p>
           </Card>
         ))}
       </div>
@@ -70,10 +70,10 @@ export function AssetMetrics({ asset }: { asset: CryptoAsset }) {
         </div>
         <p className="text-xs text-muted">{formatUpdated(asset.updatedAt)}</p>
       </div>
-      <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <dl className="grid gap-5 rounded-xl bg-elevated p-5 sm:grid-cols-2 xl:grid-cols-4">
         <div>
           <dt className="text-sm text-muted">Current price (USD)</dt>
-          <dd className="mt-2 break-words text-2xl font-semibold tabular-nums">
+          <dd className="metric-value mt-2 text-3xl">
             {formatPrice(asset.price)}
           </dd>
         </div>

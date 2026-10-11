@@ -73,7 +73,7 @@ export function HourlyForecast({
               aria-label="Scrollable hourly measurements"
               className="mt-4 overflow-x-auto"
             >
-              <table className="w-full min-w-[660px] text-left text-sm">
+              <table className="data-table w-full min-w-[660px] text-left text-sm">
                 <caption className="mb-3 text-left text-xs text-muted">
                   Local forecast times in {timezone}. Precipitation amounts
                   cover the preceding hour.
@@ -91,7 +91,7 @@ export function HourlyForecast({
                       <th
                         key={heading}
                         scope="col"
-                        className="border-b border-line px-3 py-3 font-medium"
+                        className="border-b border-line px-3 py-3 text-right first:text-left font-medium"
                       >
                         {heading}
                       </th>
@@ -114,7 +114,10 @@ export function HourlyForecast({
                         value(point.precipitation, 'precipitation'),
                         value(point.wind, 'wind'),
                       ].map((measurement, i) => (
-                        <td key={i} className="border-b border-line px-3 py-3">
+                        <td
+                          key={i}
+                          className="border-b border-line px-3 py-3 text-right"
+                        >
                           {measurement}
                         </td>
                       ))}

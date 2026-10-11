@@ -5,7 +5,7 @@ Status: **not executed against a production host**. Copy this checklist into rel
 ## Before deployment
 
 - [ ] Review Phase 9 changes and choose a license before broad open-source distribution; none is currently selected.
-- [ ] Select the host and implement/test the adapter and routing requirements in [deployment](DEPLOYMENT.md).
+- [ ] Review the prepared Vercel adapter/routing and verify the deployed routing matrix in [deployment](DEPLOYMENT.md).
 - [ ] Run tests, lint, build, formatting, whitespace checks and npm audit on the release commit.
 - [ ] Verify intentional compiler/MSW pins and the selected build/function Node runtimes.
 - [ ] Configure the key in server runtime scope, HTTPS, ingress controls and provider credit alerts.

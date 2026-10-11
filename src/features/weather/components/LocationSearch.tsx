@@ -43,7 +43,7 @@ export function LocationSearch({
             setOpen(true)
           }}
           placeholder="Try Abuja, London, or Tokyo"
-          className="min-h-11 min-w-0 flex-1 rounded-lg border border-line bg-canvas px-3 text-sm text-ink placeholder:text-muted"
+          className="analytics-control min-h-11 min-w-0 flex-1 rounded-lg border border-control bg-panel px-3 text-sm text-ink placeholder:text-muted"
         />
         {input && (
           <Button

@@ -60,9 +60,9 @@ export default function SettingsPage() {
     <>
       <PageHeader
         title="Settings"
-        description="Make this workspace feel right for you."
+        description="Manage appearance and locally stored InsightSphere preferences."
       />
-      <Card className="max-w-3xl p-6 sm:p-8">
+      <Card className="max-w-5xl p-6 sm:p-8">
         <fieldset>
           <legend className="text-lg font-semibold">Appearance</legend>
           <p className="mt-2 text-sm text-muted">
@@ -73,7 +73,7 @@ export default function SettingsPage() {
             {choices.map(({ value, label, icon: Icon, description }) => (
               <label
                 key={value}
-                className={`flex cursor-pointer flex-col gap-3 rounded-lg border p-4 ${theme === value ? 'border-accent bg-soft' : 'border-line hover:bg-canvas'}`}
+                className={`flex cursor-pointer flex-col gap-3 rounded-xl border p-5 transition-colors focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-accent ${theme === value ? 'border-accent bg-soft' : 'border-control hover:bg-elevated'}`}
               >
                 <span className="flex items-center justify-between">
                   <Icon aria-hidden="true" size={22} />
@@ -95,7 +95,7 @@ export default function SettingsPage() {
           </div>
         </fieldset>
       </Card>
-      <Card className="mt-6 max-w-3xl p-6 sm:p-8">
+      <Card className="mt-6 max-w-5xl p-6 sm:p-8">
         <h2 className="text-lg font-semibold">Analytics preferences</h2>
         <p className="mt-2 text-sm leading-6 text-muted">
           Your last selection in each domain becomes its default and appears on
@@ -127,7 +127,7 @@ export default function SettingsPage() {
           measured or published the data.
         </p>
       </Card>
-      <Card className="mt-6 max-w-3xl p-6 sm:p-8">
+      <Card className="mt-6 max-w-5xl p-6 sm:p-8">
         <h2 className="text-lg font-semibold">Restore defaults</h2>
         <p className="mt-2 text-sm leading-6 text-muted">
           Reset InsightSphere appearance and saved analytics selections: Abuja
@@ -162,7 +162,9 @@ export default function SettingsPage() {
               <Button ref={cancelButton} onClick={closeConfirmation}>
                 Cancel
               </Button>
-              <Button onClick={reset}>Confirm reset</Button>
+              <Button variant="danger" onClick={reset}>
+                Confirm reset
+              </Button>
             </div>
           </div>
         )}

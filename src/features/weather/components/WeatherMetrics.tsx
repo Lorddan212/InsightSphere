@@ -49,7 +49,7 @@ export function WeatherMetrics({ data }: { data: WeatherData }) {
                 className="size-5 shrink-0 text-accent"
               />
             </div>
-            <p className="text-2xl font-semibold">{metric}</p>
+            <p className="metric-value text-2xl">{metric}</p>
             <p className="mt-3 text-xs leading-5 text-muted">{detail}</p>
           </Card>
         ))}

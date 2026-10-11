@@ -1,3 +1,4 @@
+import { chartTooltipStyle } from '../../../components/charts/chartTheme'
 import {
   CartesianGrid,
   Line,
@@ -57,8 +58,14 @@ export function EconomicChart({
             margin={{ top: 12, left: 0, right: 16, bottom: 8 }}
             accessibilityLayer
           >
-            <CartesianGrid vertical={false} stroke="var(--color-line)" />
+            <CartesianGrid
+              strokeOpacity={0.6}
+              vertical={false}
+              stroke="var(--color-line)"
+            />
             <XAxis
+              axisLine={false}
+              tickLine={false}
               dataKey="year"
               type="number"
               domain={[range.from, range.to]}
@@ -67,6 +74,8 @@ export function EconomicChart({
               tick={{ fill: 'var(--color-muted)', fontSize: 11 }}
             />
             <YAxis
+              axisLine={false}
+              tickLine={false}
               width={80}
               domain={['auto', 'auto']}
               tickFormatter={(value) => formatEconomicValue(value, indicator)}
@@ -80,17 +89,12 @@ export function EconomicChart({
                 indicator.name,
               ]}
               labelFormatter={(label) => `Observation year: ${label}`}
-              contentStyle={{
-                background: 'var(--color-panel)',
-                color: 'var(--color-ink)',
-                borderColor: 'var(--color-line)',
-                borderRadius: 8,
-              }}
+              contentStyle={chartTooltipStyle}
             />
             <Line
               dataKey="value"
               name={indicator.name}
-              stroke="var(--color-accent)"
+              stroke="var(--chart-economy)"
               strokeWidth={2}
               type="linear"
               dot={{ r: 2 }}
@@ -110,7 +114,7 @@ export function EconomicChart({
           aria-label="Scrollable economic observations"
           tabIndex={0}
         >
-          <table className="w-full text-left text-sm tabular-nums">
+          <table className="data-table w-full text-left text-sm tabular-nums">
             <caption className="pb-3 text-left text-muted">
               {country.name} · {indicator.name} · {indicator.unit}. Unavailable
               years have no usable observation.

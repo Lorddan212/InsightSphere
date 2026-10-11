@@ -44,7 +44,7 @@ export function CurrencyConverter({
             onChange={(event) => setInput(event.target.value)}
             aria-invalid={!!error}
             aria-describedby="amount-help amount-error"
-            className="mt-2 block min-h-11 w-full rounded-lg border border-line bg-canvas px-3 text-ink"
+            className="analytics-control mt-2 block min-h-11 w-full rounded-lg border border-control bg-panel px-3 text-ink"
           />
           <p id="amount-help" className="mt-2 text-xs leading-5 text-muted">
             Use a non-negative decimal, up to 1 trillion and 6 decimal places.

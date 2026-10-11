@@ -1,3 +1,4 @@
+import { chartTooltipStyle } from '../../../components/charts/chartTheme'
 import {
   CartesianGrid,
   Line,
@@ -73,8 +74,14 @@ export function ExchangeRateChart({
             margin={{ top: 12, right: 18, left: 0, bottom: 8 }}
             accessibilityLayer
           >
-            <CartesianGrid stroke="var(--color-line)" vertical={false} />
+            <CartesianGrid
+              strokeOpacity={0.6}
+              stroke="var(--color-line)"
+              vertical={false}
+            />
             <XAxis
+              axisLine={false}
+              tickLine={false}
               dataKey="timestamp"
               type="number"
               domain={['dataMin', 'dataMax']}
@@ -83,6 +90,8 @@ export function ExchangeRateChart({
               tick={{ fill: 'var(--color-muted)', fontSize: 11 }}
             />
             <YAxis
+              axisLine={false}
+              tickLine={false}
               width={72}
               domain={['auto', 'auto']}
               tickFormatter={formatRate}
@@ -102,18 +111,13 @@ export function ExchangeRateChart({
                   : 'Unavailable',
                 `1 ${base}`,
               ]}
-              contentStyle={{
-                background: 'var(--color-panel)',
-                borderColor: 'var(--color-line)',
-                color: 'var(--color-ink)',
-                borderRadius: 8,
-              }}
+              contentStyle={chartTooltipStyle}
             />
             <Line
               name={quote}
               dataKey="rate"
               type="linear"
-              stroke="var(--color-accent)"
+              stroke="var(--chart-currency)"
               strokeWidth={2}
               dot={available.length < 10 ? { r: 3 } : false}
               connectNulls={false}
@@ -132,7 +136,7 @@ export function ExchangeRateChart({
           aria-label="Scrollable currency observations"
           tabIndex={0}
         >
-          <table className="w-full text-left text-sm tabular-nums">
+          <table className="data-table w-full text-left text-sm tabular-nums">
             <caption className="pb-3 text-left text-muted">
               Actual reference observations. Rate in {quote} for 1 {base}.
             </caption>

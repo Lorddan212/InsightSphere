@@ -8,14 +8,15 @@ export default function DashboardOverview() {
   return (
     <>
       <PageHeader
-        title="Your analytics overview."
-        description="Four perspectives, one workspace. Summaries follow your saved selections; explore a domain to change them or go deeper."
+        title="Analytics Overview"
+        description="Monitor weather, foreign exchange, economic and digital-asset indicators from one workspace."
       />
-      <p className="mb-6 max-w-3xl text-sm leading-6 text-muted">
-        Each source publishes on its own schedule. Compare trends within their
-        domain and use the observation dates below for context.
+      <p className="data-note mb-7">
+        Summaries follow your saved selections. Each provider publishes on its
+        own schedule; observation dates identify the period each value
+        describes.
       </p>
-      <div className="grid items-stretch gap-5 xl:grid-cols-2">
+      <div className="grid items-stretch gap-6 xl:grid-cols-2">
         <WeatherSummary />
         <CurrencySummary />
         <EconomySummary />

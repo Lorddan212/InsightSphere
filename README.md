@@ -75,7 +75,7 @@ npm run build
 npm run preview
 ```
 
-Preview supports the local proxy but is **not a production server**. Deploying `dist` alone will not provide crypto: a host-specific server/function adapter and API/SPA routing are still required. [Deployment guide](docs/DEPLOYMENT.md).
+Preview supports the local proxy but is **not a production server**. Deploying `dist` alone will not provide crypto: the Vercel function adapter and API/SPA routing are now included; deploy the complete project. [Deployment guide](docs/DEPLOYMENT.md).
 
 ## Available scripts
 
@@ -106,6 +106,8 @@ Vitest, Testing Library and strict MSW interception exercise domain calculations
 
 Final Phase 9 verification passed **323 tests in 17 files**, lint, strict build, formatting and whitespace checks, with no MaxListenersExceededWarning. npm audit reported zero vulnerabilities. Full release evidence is recorded in [Phase 9 verification](docs/PHASE_9_VERIFICATION.md). See [testing](docs/TESTING.md) for commands and isolation rules. Run the test suite separately from other heavy checks on constrained machines.
 
+Post-roadmap Vercel integration and presentation refinements are documented in [release verification](docs/VERCEL_PREMIUM_UI_VERIFICATION.md). The updated suite passes 349 tests in 19 files, including all original 323 cases. The final report separates automated checks from unverified browser and production behavior.
+
 ## Project structure
 
 ```text
@@ -118,6 +120,7 @@ src/
   pages/               # Settings and route recovery
   styles/              # Tailwind and theme tokens
   test/                # Strict offline test infrastructure
+api/                   # Thin Vercel function adapter
 server/crypto/         # Secure handler and local Vite adapter
 public/                # Favicon and early theme script
 docs/                  # Architecture, contracts, release and portfolio evidence
@@ -125,7 +128,7 @@ docs/                  # Architecture, contracts, release and portfolio evidence
 
 ## Known limitations
 
-- No production deployment, live URL or final screenshots have been verified. Hosting selection, adapter integration, API routing, runtime secret setup and smoke testing remain owner actions.
+- No production deployment, live URL or final screenshots have been verified. Vercel adapter/routing preparation is complete; hosting account configuration, runtime secret setup and production smoke testing remain owner actions.
 - Browser automation timed out; visual/device, native-focus and screen-reader checks remain manual. Automated tests do not establish WCAG certification or live-provider uptime.
 - Provider availability, published dates, coverage and rate/credit limits vary. Crypto supports USD and up to 365 days of history.
 - Proxy caching/budgets are process-local. Monitoring and visitor analytics are not installed.
@@ -135,7 +138,7 @@ docs/                  # Architecture, contracts, release and portfolio evidence
 
 [Architecture](docs/ARCHITECTURE.md) · [API contracts](docs/API_OVERVIEW.md) · [Testing](docs/TESTING.md) · [Security](docs/SECURITY.md) · [Deployment](docs/DEPLOYMENT.md) · [Release checklist](docs/RELEASE_CHECKLIST.md) · [Portfolio case study](docs/PORTFOLIO_CASE_STUDY.md)
 
-The planned development roadmap, Phases 0–9, is complete. Deployment integration and manual production verification remain outstanding. The [historical roadmap](docs/DEVELOPMENT_ROADMAP.md) links implementation evidence. Future work is tracked as maintenance, enhancements, bug fixes or deployment operations.
+The planned development roadmap, Phases 0–9, is complete. Vercel deployment and manual production verification remain outstanding. The [historical roadmap](docs/DEVELOPMENT_ROADMAP.md) links implementation evidence. Future work is tracked as maintenance, enhancements, bug fixes or deployment operations.
 
 ## Author
 

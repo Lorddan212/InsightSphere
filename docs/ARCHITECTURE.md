@@ -60,7 +60,11 @@ The shell updates document titles and focuses main content on navigation. The mo
 
 Cache, coalescing, request budget and cooldown are per handler instance/process. Instantiate it once per warm server/function instance, not once per request. Those limits are not a distributed account-wide quota. Public hosting must add appropriate ingress controls and monitor provider credits.
 
-The Vite plugin mounts this handler for development and local preview only. `npm run build` produces the frontend; it does not package a production function. A platform adapter and routing must be configured after the owner selects hosting. See [deployment](DEPLOYMENT.md).
+The Vite plugin mounts this handler for development and local preview only. `npm run build` produces the frontend; it does not package a production function. The Vercel entry in `api/crypto.ts` delegates to this same handler; `vercel.json` routes API requests before static files and the SPA fallback. Vercel packages the function separately. See [deployment](DEPLOYMENT.md).
+
+## Presentation system
+
+Semantic light/dark tokens in `src/styles/index.css` define surfaces, text, controls and domain chart colors. Shared Tailwind component classes style panels, tables and metrics; `src/components/charts/chartTheme.ts` holds the reused tooltip presentation. Feature components retain ownership of chart data and formatting. Early theme startup, query logic and provider boundaries are unchanged by the post-roadmap UI refinement.
 
 ## Verification boundaries
 

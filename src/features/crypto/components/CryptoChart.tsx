@@ -1,3 +1,4 @@
+import { chartTooltipStyle } from '../../../components/charts/chartTheme'
 import {
   CartesianGrid,
   Line,
@@ -58,8 +59,14 @@ export function CryptoChart({
             margin={{ top: 12, right: 16, bottom: 8 }}
             accessibilityLayer
           >
-            <CartesianGrid vertical={false} stroke="var(--color-line)" />
+            <CartesianGrid
+              strokeOpacity={0.6}
+              vertical={false}
+              stroke="var(--color-line)"
+            />
             <XAxis
+              axisLine={false}
+              tickLine={false}
               dataKey="timestamp"
               type="number"
               domain={['dataMin', 'dataMax']}
@@ -68,6 +75,8 @@ export function CryptoChart({
               tick={{ fill: 'var(--color-muted)', fontSize: 11 }}
             />
             <YAxis
+              axisLine={false}
+              tickLine={false}
               width={95}
               domain={['auto', 'auto']}
               tickFormatter={(value: number) => formatPrice(value)}
@@ -81,17 +90,12 @@ export function CryptoChart({
                 typeof value === 'number' ? formatPrice(value) : 'Unavailable',
                 'Price (USD)',
               ]}
-              contentStyle={{
-                background: 'var(--color-panel)',
-                color: 'var(--color-ink)',
-                borderColor: 'var(--color-line)',
-                borderRadius: 8,
-              }}
+              contentStyle={chartTooltipStyle}
             />
             <Line
               dataKey="price"
               name="Price (USD)"
-              stroke="var(--color-accent)"
+              stroke="var(--chart-crypto)"
               strokeWidth={2}
               type="linear"
               dot={count === 1}
@@ -111,7 +115,7 @@ export function CryptoChart({
           role="region"
           aria-label="Historical price observations"
         >
-          <table className="w-full text-left text-sm tabular-nums">
+          <table className="data-table w-full text-left text-sm tabular-nums">
             <caption className="pb-3 text-left text-muted">
               {name} · {period} · USD · Actual provider observations
             </caption>

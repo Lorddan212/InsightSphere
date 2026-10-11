@@ -17,6 +17,8 @@ Status: Complete. Planned Phases 0–9 are complete as release preparation; depl
 | 8 — Testing, Quality & Performance           | Complete | 323 tests, strict isolation, failure coverage, dependency/security/bundle review                                                    | [Phase 8](PHASE_8_VERIFICATION.md)     |
 | 9 — Production & Portfolio                   | Complete | Repository landing page, architecture/API/testing/security docs, hosting requirements, release/screenshot checklists and case study | [Phase 9](PHASE_9_VERIFICATION.md)     |
 
+Vercel deployment operations: adapter and routing prepared; see [verification](VERCEL_VERIFICATION.md). Deployment remains user-owned.
+
 ## Evidence and remaining release work
 
 Phase reports are dated snapshots. Their old test counts, uncommitted-work notes, next-phase restrictions and browser limitations describe the state at that time; they do not override current authorization or prove a current deployment.

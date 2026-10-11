@@ -38,7 +38,7 @@ export default function CryptoPage() {
     <div className="space-y-7">
       <PageHeader
         title="Cryptocurrency Analytics"
-        description="Understand market scale, daily activity, and historical prices. All monetary values are in USD."
+        description="Explore cryptocurrency prices, market activity and historical trends. Monetary values are in USD."
         action={
           <Button onClick={refresh} disabled={fetching}>
             <RefreshCw aria-hidden="true" size={16} />
@@ -46,9 +46,9 @@ export default function CryptoPage() {
           </Button>
         }
       />
-      <p className="text-sm text-muted">
-        HTTP market snapshots, not streaming prices. Refresh may reuse recent
-        cached data.
+      <p className="data-note">
+        Prices are periodic market snapshots, not a streaming feed. Refresh may
+        reuse recently retrieved data.
       </p>
       {global.isPending && <PageSkeleton />}
       {global.error && (

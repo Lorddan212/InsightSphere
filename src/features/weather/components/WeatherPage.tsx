@@ -21,7 +21,7 @@ export default function WeatherPage() {
     <>
       <PageHeader
         title="Weather analytics"
-        description="Understand conditions now, and the patterns in the forecast ahead."
+        description="Explore current conditions, near-term forecasts and temperature trends for locations worldwide."
         action={
           <Button
             onClick={() => void weather.refetch()}

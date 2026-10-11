@@ -50,7 +50,7 @@ export function EconomicComparison({
                 comparisons: [...selection.comparisons, event.target.value],
               })
           }}
-          className="mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-line bg-canvas px-3 disabled:opacity-50"
+          className="analytics-control mt-2 block min-h-11 w-full min-w-0 rounded-lg border border-control bg-panel px-3 disabled:opacity-50"
         >
           <option value="">
             {selection.comparisons.length >= 2
@@ -116,7 +116,7 @@ export function EconomicComparison({
             aria-label="Scrollable country comparison"
             tabIndex={0}
           >
-            <table className="w-full text-left text-sm tabular-nums">
+            <table className="data-table w-full text-left text-sm tabular-nums">
               <caption className="pb-3 text-left text-muted">
                 {indicator.name} · {indicator.unit}
               </caption>

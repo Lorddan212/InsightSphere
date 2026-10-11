@@ -51,7 +51,7 @@ export default function EconomyPage() {
     <>
       <PageHeader
         title="Economic Analytics"
-        description="Explore annual economic and development indicators, their observation years, and comparable country data."
+        description="Explore World Bank economic and development indicators across countries and historical periods."
         action={
           <Button onClick={refresh} disabled={refreshing}>
             <RefreshCw aria-hidden="true" size={16} />

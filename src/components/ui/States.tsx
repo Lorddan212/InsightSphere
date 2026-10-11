@@ -31,10 +31,15 @@ export function ErrorState({
   headingLevel?: 'h1' | 'h2'
 }) {
   return (
-    <div role="alert" className="rounded-xl border border-line bg-panel p-8">
+    <div
+      role="alert"
+      className="analytics-panel border-l-2 border-l-accent p-6 sm:p-8"
+    >
       <CircleAlert aria-hidden="true" className="mb-3 text-accent" />
       <Heading className="text-xl font-semibold">{title}</Heading>
-      <p className="my-3 text-muted">{description}</p>
+      <p className="my-3 max-w-prose text-sm leading-6 text-muted">
+        {description}
+      </p>
       {onRetry && <Button onClick={onRetry}>Try again</Button>}
     </div>
   )

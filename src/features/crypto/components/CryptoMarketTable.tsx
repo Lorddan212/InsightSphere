@@ -82,7 +82,7 @@ export function CryptoMarketTable({
             type="search"
             value={filter}
             onChange={(event) => setFilter(event.target.value)}
-            className="mt-2 block min-h-11 w-full rounded-lg border border-line bg-panel px-3 sm:w-64"
+            className="analytics-control mt-2 block min-h-11 w-full rounded-lg border border-control bg-panel px-3 sm:w-64"
           />
         </label>
       </div>
@@ -97,7 +97,7 @@ export function CryptoMarketTable({
         aria-label="Scrollable market table"
         tabIndex={0}
       >
-        <table className="w-full min-w-[740px] text-left text-sm tabular-nums">
+        <table className="data-table w-full min-w-[740px] text-left text-sm tabular-nums">
           <caption className="sr-only">
             Cryptocurrency market rankings, prices and 24-hour activity in USD
           </caption>

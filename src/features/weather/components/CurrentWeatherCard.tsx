@@ -43,7 +43,7 @@ export function CurrentWeatherCard({
             className={
               current?.temperature == null
                 ? 'text-2xl font-semibold'
-                : 'text-5xl font-semibold tracking-tight sm:text-6xl'
+                : 'metric-value text-5xl sm:text-6xl'
             }
           >
             {value(current?.temperature, 'temperature')}
@@ -69,7 +69,7 @@ export function CurrentWeatherCard({
       </section>
       <section
         aria-labelledby="today-heading"
-        className="border-t border-line bg-soft/30 p-6 sm:p-8 md:border-l md:border-t-0"
+        className="border-t border-line bg-elevated p-6 sm:p-8 md:border-l md:border-t-0"
       >
         <h2 id="today-heading" className="mb-5 font-semibold">
           Today’s outlook

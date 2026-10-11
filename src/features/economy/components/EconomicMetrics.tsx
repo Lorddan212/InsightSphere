@@ -50,12 +50,13 @@ export function EconomicMetrics({
       aria-label="Economic metrics"
       className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
     >
-      {cards.map((card) => (
-        <Card key={card.title} className="min-w-0 p-5">
+      {cards.map((card, index) => (
+        <Card
+          key={card.title}
+          className={`min-w-0 p-5 ${index === 0 ? 'border-l-2 border-l-accent bg-elevated' : ''}`}
+        >
           <h3 className="text-sm text-muted">{card.title}</h3>
-          <p className="mt-3 break-words text-2xl font-semibold tabular-nums">
-            {card.value}
-          </p>
+          <p className="metric-value mt-3 text-2xl">{card.value}</p>
           <p className="mt-2 text-xs leading-5 text-muted">{card.detail}</p>
         </Card>
       ))}
