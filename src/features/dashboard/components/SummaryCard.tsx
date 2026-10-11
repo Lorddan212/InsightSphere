@@ -14,6 +14,8 @@ interface Props {
   error: Error | null
   hasData: boolean
   onRefresh: () => void
+  metric: ReactNode
+  trend?: ReactNode
   children: ReactNode
 }
 export function SummaryCard({
@@ -27,6 +29,8 @@ export function SummaryCard({
   error,
   hasData,
   onRefresh,
+  metric,
+  trend,
   children,
 }: Props) {
   return (
@@ -35,9 +39,9 @@ export function SummaryCard({
       data-domain={id}
       className="min-w-0"
     >
-      <Card className="summary-panel flex h-full flex-col p-5 sm:p-7">
-        <div className="mb-5 flex items-start justify-between gap-3">
-          <div>
+      <Card className="summary-panel flex h-full flex-col p-5 sm:p-6 2xl:p-8">
+        <div className="mb-7 flex items-start justify-between gap-3">
+          <div className="min-w-0">
             <h2
               id={`${id}-heading`}
               className="text-lg font-semibold tracking-tight"
@@ -51,7 +55,7 @@ export function SummaryCard({
             onClick={onRefresh}
             disabled={refreshing}
             aria-label={`${error ? 'Retry' : 'Refresh'} ${title.toLowerCase()} summary`}
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-control text-muted transition-colors hover:border-accent hover:bg-soft hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full text-muted transition-colors hover:border-accent hover:bg-soft hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
           >
             <RefreshCw aria-hidden="true" size={17} />
           </button>
@@ -81,7 +85,13 @@ export function SummaryCard({
             </div>
           </div>
         ) : (
-          <div className="flex-1 space-y-4">{children}</div>
+          <div className="summary-content flex-1">
+            <div className="summary-reading">
+              {metric}
+              <div className="mt-4 space-y-3">{children}</div>
+            </div>
+            {trend && <div className="summary-trend">{trend}</div>}
+          </div>
         )}
         {refreshing && hasData && (
           <p role="status" className="mt-3 text-xs text-muted">
@@ -112,7 +122,7 @@ export function SummaryValue({
   return (
     <dl>
       <dt className="text-sm text-muted">{label}</dt>
-      <dd className="metric-value mt-2 text-3xl sm:text-[2rem]">{value}</dd>
+      <dd className="summary-value metric-value mt-3">{value}</dd>
     </dl>
   )
 }

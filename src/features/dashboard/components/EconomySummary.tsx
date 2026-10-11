@@ -54,11 +54,26 @@ export function EconomySummary() {
       error={countries.error ?? series?.error ?? null}
       hasData={!!metrics.last}
       onRefresh={refresh}
+      trend={
+        <MiniTrend
+          title={`Annual trend · ${indicator.unit}`}
+          points={economicChartPoints(data?.observations ?? [], range).map(
+            (point) => ({
+              x: point.year,
+              label: String(point.year),
+              value: point.value,
+            }),
+          )}
+          format={(value) => formatEconomicValue(value, indicator)}
+        />
+      }
+      metric={
+        <SummaryValue
+          label={indicator.unit}
+          value={formatEconomicValue(metrics.last?.value ?? null, indicator)}
+        />
+      }
     >
-      <SummaryValue
-        label={indicator.unit}
-        value={formatEconomicValue(metrics.last?.value ?? null, indicator)}
-      />
       <p className="text-sm text-muted">
         {metrics.last
           ? `Latest observation: ${metrics.last.year}. Annual published data; not real-time.`
@@ -70,17 +85,6 @@ export function EconomySummary() {
           ? ` · ${metrics.first.year}–${metrics.last.year}`
           : ''}
       </p>
-      <MiniTrend
-        title={`Annual trend · ${indicator.unit}`}
-        points={economicChartPoints(data?.observations ?? [], range).map(
-          (point) => ({
-            x: point.year,
-            label: String(point.year),
-            value: point.value,
-          }),
-        )}
-        format={(value) => formatEconomicValue(value, indicator)}
-      />
       <p className="text-xs text-muted">
         {data?.updated
           ? `Provider dataset updated: ${data.updated}.`

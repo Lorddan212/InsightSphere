@@ -247,7 +247,10 @@ describe('Unified analytics dashboard', () => {
   it('renders four summaries, bounded trends, source-specific dates and drill-down links', async () => {
     mount()
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Analytics Overview' }),
+      screen.getByRole('heading', {
+        level: 1,
+        name: 'Global Intelligence Overview',
+      }),
     ).toBeInTheDocument()
     expect(
       screen.getByText(/Each provider publishes on its own schedule/),
@@ -338,7 +341,7 @@ describe('Unified analytics dashboard', () => {
     mount()
     await waitFor(() => expect(screen.getAllByRole('alert')).toHaveLength(4))
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Analytics Overview',
+      'Global Intelligence Overview',
     )
     expect(screen.getAllByRole('link', { name: /Explore/ })).toHaveLength(4)
   })

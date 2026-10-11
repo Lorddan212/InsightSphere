@@ -26,8 +26,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         ?.setAttribute(
           'content',
           document.documentElement.dataset.theme === 'dark'
-            ? '#101c2b'
-            : '#f3f6fa',
+            ? '#070d18'
+            : '#f1f3f6',
         )
     }
     apply()

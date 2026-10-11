@@ -50,7 +50,7 @@ export function EconomicChart({
         role="img"
         aria-label={`${country.name} ${indicator.name} historical trend`}
         aria-describedby="economy-chart-context"
-        className="h-72 min-w-0"
+        className="chart-plot"
       >
         <ResponsiveContainer width="100%" height="100%" minWidth={0}>
           <LineChart

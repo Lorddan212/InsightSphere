@@ -34,11 +34,13 @@ export function CryptoSummary() {
         void asset.refetch()
         void global.refetch()
       }}
+      metric={
+        <SummaryValue
+          label="Selected asset price · USD"
+          value={formatPrice(quote?.price ?? null)}
+        />
+      }
     >
-      <SummaryValue
-        label="Selected asset price · USD"
-        value={formatPrice(quote?.price ?? null)}
-      />
       {asset.error instanceof ApiError &&
         asset.error.status === 404 &&
         preferences.coinId !== 'bitcoin' && (
@@ -52,7 +54,7 @@ export function CryptoSummary() {
       <p className="text-xs text-muted">
         Asset: {formatUpdated(quote?.updatedAt ?? null)}
       </p>
-      <dl className="grid grid-cols-2 gap-4 rounded-lg bg-soft/50 p-4 text-sm">
+      <dl className="grid gap-4 border-t border-line pt-4 text-sm min-[480px]:grid-cols-2 sm:grid-cols-1 2xl:grid-cols-2">
         <div>
           <dt className="text-muted">Global market cap</dt>
           <dd className="mt-1 font-semibold">

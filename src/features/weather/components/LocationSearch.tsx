@@ -17,10 +17,7 @@ export function LocationSearch({
   const meaningful = input.trim().length >= 3
   const results = search.settled ? search.data : undefined
   return (
-    <section
-      aria-label="Choose weather location"
-      className="mb-6 rounded-xl border border-line bg-panel p-4 sm:p-5"
-    >
+    <section aria-label="Choose weather location" className="control-bar mb-6">
       <label htmlFor={id} className="mb-2 block text-sm font-semibold">
         Search for a city or place
       </label>

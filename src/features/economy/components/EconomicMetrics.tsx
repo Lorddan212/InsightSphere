@@ -1,4 +1,3 @@
-import { Card } from '../../../components/ui/Card'
 import type { EconomicIndicator, EconomicSeries } from '../types/economy.types'
 import { calculateEconomicMetrics } from '../utils/economicCalculations'
 import {
@@ -46,20 +45,21 @@ export function EconomicMetrics({
     },
   ]
   return (
-    <section
-      aria-label="Economic metrics"
-      className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
-    >
-      {cards.map((card, index) => (
-        <Card
-          key={card.title}
-          className={`min-w-0 p-5 ${index === 0 ? 'border-l-2 border-l-accent bg-elevated' : ''}`}
-        >
-          <h3 className="text-sm text-muted">{card.title}</h3>
-          <p className="metric-value mt-3 text-2xl">{card.value}</p>
-          <p className="mt-2 text-xs leading-5 text-muted">{card.detail}</p>
-        </Card>
-      ))}
+    <section aria-label="Economic metrics" className="economic-metrics mb-6">
+      <div className="economic-primary">
+        <h3 className="text-sm text-muted">{cards[0].title}</h3>
+        <p className="metric-value mt-4">{cards[0].value}</p>
+        <p className="mt-4 text-sm text-muted">{cards[0].detail}</p>
+      </div>
+      <div className="economic-support">
+        {cards.slice(1).map((card) => (
+          <div key={card.title} className="min-w-0">
+            <h3 className="text-sm text-muted">{card.title}</h3>
+            <p className="metric-value mt-3 text-2xl">{card.value}</p>
+            <p className="mt-2 text-xs leading-5 text-muted">{card.detail}</p>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }

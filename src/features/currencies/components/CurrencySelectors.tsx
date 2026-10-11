@@ -13,7 +13,7 @@ export function CurrencySelectors({
   onChange: (selection: CurrencySelection) => void
 }) {
   return (
-    <Card className="mb-6 grid items-end gap-4 p-5 sm:grid-cols-[1fr_auto_1fr]">
+    <Card className="control-bar mb-6 grid items-end gap-4 sm:grid-cols-[1fr_auto_1fr]">
       <label className="min-w-0 text-sm font-medium">
         Base currency
         <select

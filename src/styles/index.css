@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-sans: 'Segoe UI Variable', 'Segoe UI', 'Helvetica Neue', sans-serif;
   --color-canvas: var(--canvas);
   --color-panel: var(--panel);
   --color-ink: var(--ink);
@@ -12,6 +12,14 @@
   --color-elevated: var(--elevated);
   --color-control: var(--control);
   --color-prestige: var(--prestige);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-ink: var(--sidebar-ink);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-line: var(--sidebar-line);
+  --color-sidebar-prestige: var(--sidebar-prestige);
   --shadow-panel: var(--panel-shadow);
   --color-success: var(--success);
   --color-danger: var(--danger);
@@ -19,39 +27,47 @@
 
 :root {
   color-scheme: light;
-  --canvas: #f2f4f7;
+  --sidebar: #050a13;
+  --sidebar-ink: #edf2fa;
+  --sidebar-muted: #a7b5cb;
+  --sidebar-accent: #a8c2ff;
+  --sidebar-active: #172844;
+  --sidebar-hover: #102037;
+  --sidebar-line: #26364c;
+  --sidebar-prestige: #c9b892;
+  --canvas: #f1f3f6;
   --panel: #ffffff;
-  --ink: #16263c;
-  --muted: #526278;
-  --line: #dbe2eb;
-  --accent: #285ac1;
-  --soft: #eaf0fa;
-  --elevated: #f7f9fc;
+  --ink: #142238;
+  --muted: #506078;
+  --line: #d8e0e9;
+  --accent: #275bbf;
+  --soft: #e7eefb;
+  --elevated: #f6f8fb;
   --control: #75849a;
   --prestige: #826328;
   --chart-weather: #087b9c;
-  --chart-currency: #285ac1;
+  --chart-currency: #275bbf;
   --chart-economy: #7254b5;
   --chart-crypto: #5263bf;
-  --panel-shadow: 0 2px 4px #16263c04, 0 12px 32px #16263c05;
+  --panel-shadow: 0 2px 4px #14223804, 0 12px 32px #14223805;
   --success: #157347;
   --danger: #b42336;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --canvas: #050a12;
-  --panel: #0a1220;
+  --canvas: #070d18;
+  --panel: #0d1728;
   --ink: #edf2fa;
   --muted: #a2b0c4;
-  --line: #253247;
-  --accent: #9abaff;
-  --soft: #152238;
-  --elevated: #101b2b;
+  --line: #24334b;
+  --accent: #a8c2ff;
+  --soft: #182945;
+  --elevated: #132037;
   --control: #65758e;
-  --prestige: #c7b58b;
+  --prestige: #c9b892;
   --chart-weather: #70cae2;
-  --chart-currency: #9abaff;
+  --chart-currency: #a8c2ff;
   --chart-economy: #b8a4ed;
   --chart-crypto: #a4b0f5;
   --panel-shadow: 0 2px 4px #00000012, 0 16px 40px #00000018;
@@ -62,6 +78,13 @@
 @layer base {
   body {
     @apply m-0 min-w-80 bg-canvas font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  p,
+  dd {
+    overflow-wrap: anywhere;
   }
   button,
   a,
@@ -84,7 +107,7 @@
 
 @layer components {
   .analytics-panel {
-    @apply min-w-0 rounded-2xl border border-line bg-panel shadow-panel;
+    @apply min-w-0 rounded-2xl bg-panel;
   }
   .metric-value {
     @apply break-words font-semibold tracking-tight tabular-nums;
@@ -97,7 +120,7 @@
     @apply w-full text-sm tabular-nums;
   }
   .data-table thead {
-    @apply bg-elevated text-xs text-muted;
+    @apply sticky top-0 z-10 bg-elevated text-xs text-muted;
   }
   .data-table thead th {
     @apply px-3 font-semibold;
@@ -116,7 +139,256 @@
     @apply min-h-11 rounded-lg border border-control bg-panel px-3 text-sm text-ink transition-colors hover:border-accent;
   }
   .summary-panel {
-    border-top: 2px solid var(--domain-accent, var(--accent));
+    border: 1px solid var(--line);
+  }
+
+  .workspace-sidebar {
+    background: var(--sidebar);
+    color: var(--sidebar-ink);
+  }
+  .workspace-sidebar :focus-visible {
+    outline-color: var(--sidebar-accent);
+  }
+  .workspace-header {
+    border-bottom: 1px solid var(--line);
+  }
+  .overview-grid {
+    display: grid;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  .summary-content {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+  }
+  .summary-reading,
+  .summary-trend {
+    min-width: 0;
+  }
+  .summary-value {
+    font-size: clamp(2rem, 3.3vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.045em;
+  }
+  .summary-panel h2 {
+    color: var(--domain-accent);
+  }
+  .summary-trend {
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+  }
+  .summary-trend figure {
+    margin: 0;
+  }
+  .lead-panel {
+    box-shadow: var(--panel-shadow);
+    background: var(--elevated);
+  }
+  .metric-strip {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-block: 1px solid var(--line);
+  }
+  .metric-strip > * {
+    min-width: 0;
+  }
+  .weather-overview {
+    display: grid;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .weather-metrics {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .economic-metrics {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .economic-primary {
+    padding: 1.5rem;
+    background: var(--elevated);
+    border-radius: 1rem;
+  }
+  .economic-primary .metric-value {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+  }
+  .economic-support {
+    display: grid;
+    gap: 1.5rem;
+    padding-block: 1.5rem;
+    border-block: 1px solid var(--line);
+  }
+  .currency-overview {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .asset-metrics {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    padding-block: 1.5rem;
+  }
+  .asset-price {
+    font-size: clamp(2.25rem, 4vw, 4rem);
+    line-height: 1.1;
+  }
+  .control-bar {
+    background: transparent;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 0 0 1.5rem;
+  }
+  .period-control {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+    background: var(--canvas);
+  }
+  .period-control button {
+    border-color: transparent;
+    padding-inline: 0.75rem;
+    background: transparent;
+  }
+  .period-control button[aria-pressed='true'] {
+    background: var(--soft);
+    box-shadow: inset 0 -2px var(--accent);
+  }
+  .chart-plot {
+    height: 14rem;
+    min-width: 0;
+  }
+  .data-table caption {
+    padding-block: 0.75rem;
+  }
+  .data-table tbody tr {
+    height: 3.25rem;
+  }
+  .data-table th,
+  .data-table td {
+    white-space: nowrap;
+  }
+  .settings-layout {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .theme-preview {
+    display: flex;
+    gap: 0.35rem;
+    height: 3.5rem;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    background: #edf1f7;
+    border: 1px solid #7988a0;
+  }
+  .theme-preview::before {
+    content: '';
+    width: 20%;
+    border-radius: 0.15rem;
+    background: #172844;
+  }
+  .theme-preview::after {
+    content: '';
+    flex: 1;
+    border-radius: 0.2rem;
+    background: #fff;
+    border-bottom: 0.35rem solid #275bbf;
+  }
+  .theme-preview[data-appearance='dark'] {
+    background: #070d18;
+  }
+  .theme-preview[data-appearance='dark']::after {
+    background: #132037;
+    border-color: #a8c2ff;
+  }
+  .theme-preview[data-appearance='system'] {
+    background: linear-gradient(90deg, #edf1f7 50%, #070d18 50%);
+  }
+  @media (min-width: 480px) {
+    .weather-metrics,
+    .metric-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 640px) {
+    .overview-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .chart-plot {
+      height: 18rem;
+    }
+    .economic-support {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .asset-metrics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .asset-metrics > :first-child {
+      grid-column: 1 / -1;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+  }
+  @media (min-width: 1280px) {
+    .overview-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    .overview-grid > [data-domain='currency-summary'],
+    .overview-grid > [data-domain='economy-summary'] {
+      grid-column: span 2;
+    }
+    [data-domain='currency-summary'] .summary-panel {
+      background: var(--elevated);
+      border-color: transparent;
+    }
+    .weather-overview {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    }
+    .currency-overview {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .metric-strip {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .settings-layout {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    }
+    .settings-reset {
+      grid-column: 1 / -1;
+    }
+    .asset-metrics {
+      grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    }
+    .asset-metrics > :first-child {
+      grid-column: auto;
+      border: 0;
+      padding: 0;
+    }
+  }
+  @media (min-width: 1440px) {
+    .overview-grid > [data-domain='currency-summary'] .summary-content,
+    .overview-grid > [data-domain='economy-summary'] .summary-content {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      align-items: center;
+    }
+    .overview-grid > [data-domain='currency-summary'] .summary-trend,
+    .overview-grid > [data-domain='economy-summary'] .summary-trend {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .economic-metrics {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    }
+    .chart-plot {
+      height: 20rem;
+    }
   }
   [data-domain='weather-summary'] {
     --domain-accent: var(--chart-weather);

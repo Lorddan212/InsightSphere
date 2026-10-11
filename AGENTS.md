@@ -8,7 +8,7 @@ InsightSphere — Multi-API Analytics Dashboard is a portfolio-grade analytics p
 
 ### Current Phase: Phase 9 — Production & Portfolio
 
-Status: Complete. Planned Phases 0–9 are complete as release preparation. See docs/PROJECT_STATUS.md and docs/PHASE_9_VERIFICATION.md for deployment integration and manual verification prerequisites. Deployment, hosting account changes, credentials, commits and pushes remain user-owned. Preserve MSW 2.15.0 and TypeScript 6.0.3. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working. Post-roadmap Vercel integration and premium UI refinement are authorized; stop before deployment, commit or push. See docs/VERCEL_PREMIUM_UI_VERIFICATION.md. Further work belongs to maintenance, enhancements, bug fixes or deployment operations.
+Status: Complete. Planned Phases 0–9 are complete as release preparation. See docs/PROJECT_STATUS.md and docs/PHASE_9_VERIFICATION.md for deployment integration and manual verification prerequisites. Deployment, hosting account changes, credentials, commits and pushes remain user-owned. Preserve MSW 2.15.0 and TypeScript 6.0.3. Read this file, README.md, and docs/DEVELOPMENT_ROADMAP.md before working. Post-roadmap Vercel integration and premium UI refinement are authorized; stop before deployment, commit or push. The subsequent luxury analytics redesign and narrowly scoped crypto startup fix are authorized; see docs/LUXURY_UI_REDESIGN_VERIFICATION.md. Further work belongs to maintenance, enhancements, bug fixes or deployment operations.
 
 ## Technology Stack
 

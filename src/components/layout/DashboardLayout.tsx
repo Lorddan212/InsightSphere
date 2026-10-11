@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useRef } from 'react'
-import { Menu, X } from 'lucide-react'
-import { Outlet, useLocation } from 'react-router'
+import { Menu, SlidersHorizontal, X } from 'lucide-react'
+import { Link, Outlet, useLocation } from 'react-router'
 import { Sidebar } from './Sidebar'
 import { Button } from '../ui/Button'
 import { PageSkeleton } from '../ui/States'
@@ -22,7 +22,7 @@ export function DashboardLayout() {
   const pageTitle =
     (
       {
-        Overview: 'Analytics Overview',
+        Overview: 'Global Intelligence Overview',
         Weather: 'Weather Analytics',
         Currencies: 'Currency Analytics',
         Economy: 'Economic Analytics',
@@ -55,7 +55,7 @@ export function DashboardLayout() {
       >
         Skip to main content
       </a>
-      <aside className="fixed inset-y-0 left-0 hidden w-64 lg:block">
+      <aside className="fixed inset-y-0 left-0 hidden w-56 lg:block xl:w-60">
         <Sidebar />
       </aside>
       <dialog
@@ -76,7 +76,7 @@ export function DashboardLayout() {
         <button
           aria-label="Close navigation"
           onClick={() => dialog.current?.close()}
-          className="absolute right-3 top-2 rounded p-2 text-ink"
+          className="absolute right-3 top-2 rounded p-3 text-sidebar-ink focus-visible:outline-sidebar-accent"
         >
           <X aria-hidden="true" size={20} />
         </button>
@@ -87,8 +87,8 @@ export function DashboardLayout() {
           }}
         />
       </dialog>
-      <div className="lg:pl-64">
-        <header className="flex h-20 items-center justify-between gap-3 border-b border-line bg-panel px-5 sm:px-8 xl:px-10">
+      <div className="lg:pl-56 xl:pl-60">
+        <header className="workspace-header flex h-16 items-center justify-between gap-3 px-4 sm:px-6 xl:px-9">
           <div className="flex items-center gap-3">
             <Button
               ref={menuButton}
@@ -103,19 +103,29 @@ export function DashboardLayout() {
               <Menu aria-hidden="true" size={20} />
             </Button>
             <span className="text-sm text-muted">
-              Workspace{' '}
-              <span aria-hidden="true" className="mx-2 text-muted">
-                /
-              </span>{' '}
+              <span className="hidden sm:inline">
+                Workspace{' '}
+                <span aria-hidden="true" className="mx-2">
+                  /
+                </span>{' '}
+              </span>
               <span className="font-medium text-ink">{title}</span>
             </span>
           </div>
+          <Link
+            to="/settings"
+            className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-xs text-muted hover:text-ink"
+          >
+            <SlidersHorizontal size={16} aria-hidden="true" />
+            <span className="hidden min-[375px]:inline">Appearance</span>
+            <span className="sr-only min-[375px]:hidden">Appearance</span>
+          </Link>
         </header>
         <main
           ref={main}
           id="main-content"
           tabIndex={-1}
-          className="mx-auto min-w-0 max-w-[1600px] px-4 py-7 outline-none sm:px-8 sm:py-9 xl:px-10"
+          className="mx-auto min-w-0 max-w-[1600px] px-4 py-7 outline-none sm:px-6 sm:py-9 xl:px-9 2xl:px-12"
         >
           <FeatureErrorBoundary key={pathname}>
             <Suspense fallback={<PageSkeleton />}>

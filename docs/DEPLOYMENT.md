@@ -1,6 +1,6 @@
 # Vercel deployment preparation
 
-Vercel is the selected target. The repository now includes a thin function adapter and API/SPA routing. **No deployment or hosting account change has been performed.** Deployment remains user-owned.
+Vercel is the selected target. The repository now includes a thin function adapter and API/SPA routing. The owner has deployed [InsightSphere](https://insight-sphere-theta.vercel.app/). Read-only diagnostics found an emitted-module import failure in the current crypto function; the local correction awaits owner redeployment. No deployment or hosting account change was performed by this redesign task. See [diagnosis and evidence](LUXURY_UI_REDESIGN_VERIFICATION.md).
 
 ## Implementation
 
@@ -16,6 +16,8 @@ Routing order is deliberate:
 4. Remaining paths serve `/index.html`, allowing React Router to resolve deep links and its Not Found view.
 
 Low-level `routes` make the filesystem boundary explicit; do not combine them with top-level `rewrites`, `redirects`, `headers` or `cleanUrls`. [Vercel configuration](https://vercel.com/docs/project-configuration/vercel-json#routes).
+
+Server source imports use `.js` specifiers for compiled ESM. Do not change them to `.ts` merely because source-level tests pass: Vercel runs emitted JavaScript, and those tests can mask a missing-module failure. An offline regression test now boots the emitted adapter in a separate Node process.
 
 The function deadline is 30 seconds, allowing the proxy's 15-second upstream timeout plus overhead. `vite preview` remains local-only and does not emulate Vercel's routing or function packaging.
 

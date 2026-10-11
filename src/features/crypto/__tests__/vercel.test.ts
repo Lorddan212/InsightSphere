@@ -17,6 +17,60 @@ async function loadAdapter(key = KEY) {
 afterEach(() => vi.unstubAllEnvs())
 
 describe('Vercel crypto adapter', () => {
+  it('boots emitted JavaScript without relying on TypeScript source files', async () => {
+    // Vitest resolves TS source imports that the deployed Node runtime cannot.
+    // Execute the emitted module in a separate Node process to cover that boundary.
+    // Obtain Node helpers at execution time; this suite otherwise runs in jsdom.
+    const { execFile } = process.getBuiltinModule('node:child_process')
+    const { mkdtemp, mkdir, rm } = process.getBuiltinModule('node:fs/promises')
+    const path = process.getBuiltinModule('node:path')
+    const { promisify } = process.getBuiltinModule('node:util')
+    const { pathToFileURL } = process.getBuiltinModule('node:url')
+    const parent = path.resolve('node_modules/.tmp')
+    await mkdir(parent, { recursive: true })
+    const output = await mkdtemp(path.join(parent, 'crypto-emitted-'))
+    const run = promisify(execFile)
+    try {
+      await run(process.execPath, [
+        'node_modules/typescript/bin/tsc',
+        '--project',
+        'api/tsconfig.json',
+        '--noEmit',
+        'false',
+        '--allowImportingTsExtensions',
+        'false',
+        '--rootDir',
+        process.cwd(),
+        '--outDir',
+        output,
+      ])
+      const entry = pathToFileURL(path.join(output, 'api/crypto.js')).href
+      const script = [
+        "import assert from 'node:assert/strict'",
+        "globalThis.fetch = () => { throw new Error('Unexpected network request') }",
+        'const { default: adapter } = await import(' +
+          JSON.stringify(entry) +
+          ')',
+        "const response = await adapter.fetch(new Request('https://example.test/api/crypto/global'))",
+        'assert.equal(response.status, 503)',
+        "assert.equal((await response.json()).error.code, 'NOT_CONFIGURED')",
+        "console.log('Compiled adapter booted safely')",
+      ].join(';\n')
+      const result = await run(
+        process.execPath,
+        ['--input-type=module', '--eval', script],
+        {
+          env: { ...process.env, COINGECKO_API_KEY: '' },
+        },
+      )
+      expect(result.stdout).toContain('Compiled adapter booted safely')
+      expect(result.stderr).toBe('')
+    } finally {
+      // Only this test's mkdtemp-created directory, under the repository cache.
+      await rm(output, { recursive: true, force: true })
+    }
+  }, 30000)
+
   it('fails safely without a runtime credential', async () => {
     const adapter = await loadAdapter('')
     const response = await adapter.fetch(request('/api/crypto/global'))

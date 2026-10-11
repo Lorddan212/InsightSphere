@@ -66,7 +66,7 @@ export function ExchangeRateChart({
         aria-describedby="currency-chart-context"
         aria-label={`${base} to ${quote} exchange rate trend`}
         role="img"
-        className="h-72 min-w-0"
+        className="chart-plot"
       >
         <ResponsiveContainer width="100%" height="100%" minWidth={0}>
           <LineChart

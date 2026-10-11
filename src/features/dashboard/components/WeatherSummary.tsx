@@ -23,11 +23,30 @@ export function WeatherSummary() {
       error={query.error}
       hasData={!!data?.hasMeasurements}
       onRefresh={() => void query.refetch()}
+      trend={
+        data?.hasMeasurements ? (
+          <MiniTrend
+            title="Next 24 hours · °C"
+            points={data.hourly.slice(0, 24).map((point) => ({
+              x: point.time,
+              label: formatWeatherTime(point.time, data.timezone, 'full'),
+              value: point.temperature,
+            }))}
+            format={(value) => formatMeasurement(value, 'temperature')}
+          />
+        ) : (
+          <p className="text-sm text-muted">
+            No weather measurements available.
+          </p>
+        )
+      }
+      metric={
+        <SummaryValue
+          label="Current temperature"
+          value={formatMeasurement(data?.current?.temperature, 'temperature')}
+        />
+      }
     >
-      <SummaryValue
-        label="Current temperature"
-        value={formatMeasurement(data?.current?.temperature, 'temperature')}
-      />
       {data?.current && (
         <p className="text-sm text-muted">
           {data.current.condition.label} · Feels like{' '}
@@ -38,19 +57,6 @@ export function WeatherSummary() {
         <p className="text-sm text-muted">
           Some weather measurements are unavailable.
         </p>
-      )}
-      {data?.hasMeasurements ? (
-        <MiniTrend
-          title="Next 24 hours · °C"
-          points={data.hourly.slice(0, 24).map((point) => ({
-            x: point.time,
-            label: formatWeatherTime(point.time, data.timezone, 'full'),
-            value: point.temperature,
-          }))}
-          format={(value) => formatMeasurement(value, 'temperature')}
-        />
-      ) : (
-        <p className="text-sm text-muted">No weather measurements available.</p>
       )}
       <p className="text-xs text-muted">
         {data?.current

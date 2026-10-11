@@ -4,13 +4,13 @@ A multi-API analytics dashboard for exploring weather, currency, economic and cr
 
 ## Overview
 
-InsightSphere brings four independent public-data providers into one consistent workspace. The overview follows saved selections; dedicated pages provide deeper analysis. Each domain handles its own loading, missing data and provider failures, so one unavailable source does not disable the whole dashboard.
+InsightSphere brings four independent public-data providers into one consistent workspace. The overview follows saved selections; dedicated pages provide deeper analysis. Wide currency/economy trends and compact weather/crypto readings form an asymmetric desktop overview, adapting to two-column tablet and stacked mobile layouts. Each domain handles its own loading, missing data and provider failures, so one unavailable source does not disable the whole dashboard.
 
 **Release status:** Phases 0–9 release preparation complete. Deployment is user-owned. See [project status](docs/PROJECT_STATUS.md) for verification and remaining release work.
 
 ## Live demo
 
-Deployment pending final release. No public URL has been verified.
+[Open InsightSphere](https://insight-sphere-theta.vercel.app/). The owner has deployed the application. Read-only Vercel diagnostics confirmed the deployment and identified a crypto function startup failure; the local fix and redesigned UI await owner review and redeployment. See [luxury redesign verification](docs/LUXURY_UI_REDESIGN_VERIFICATION.md).
 
 ## Screenshots
 
@@ -106,7 +106,7 @@ Vitest, Testing Library and strict MSW interception exercise domain calculations
 
 Final Phase 9 verification passed **323 tests in 17 files**, lint, strict build, formatting and whitespace checks, with no MaxListenersExceededWarning. npm audit reported zero vulnerabilities. Full release evidence is recorded in [Phase 9 verification](docs/PHASE_9_VERIFICATION.md). See [testing](docs/TESTING.md) for commands and isolation rules. Run the test suite separately from other heavy checks on constrained machines.
 
-Post-roadmap Vercel integration and presentation refinements are documented in [release verification](docs/VERCEL_PREMIUM_UI_VERIFICATION.md). The updated suite passes 349 tests in 19 files, including all original 323 cases. The final report separates automated checks from unverified browser and production behavior.
+Post-roadmap Vercel integration and presentation refinements are documented in [release verification](docs/VERCEL_PREMIUM_UI_VERIFICATION.md). The updated suite passes 349 tests in 19 files, including all original 323 cases. That historical report separates automated checks from unverified browser and production behavior. The subsequent [luxury redesign report](docs/LUXURY_UI_REDESIGN_VERIFICATION.md) records structural UI changes, emitted-server regression coverage and the production investigation.
 
 ## Project structure
 
@@ -128,7 +128,7 @@ docs/                  # Architecture, contracts, release and portfolio evidence
 
 ## Known limitations
 
-- No production deployment, live URL or final screenshots have been verified. Vercel adapter/routing preparation is complete; hosting account configuration, runtime secret setup and production smoke testing remain owner actions.
+- A production deployment exists, but crypto currently fails during function startup. Emitted-module import paths are corrected locally; redeployment and live API smoke tests remain owner actions. Final screenshots are not yet available.
 - Browser automation timed out; visual/device, native-focus and screen-reader checks remain manual. Automated tests do not establish WCAG certification or live-provider uptime.
 - Provider availability, published dates, coverage and rate/credit limits vary. Crypto supports USD and up to 365 days of history.
 - Proxy caching/budgets are process-local. Monitoring and visitor analytics are not installed.
@@ -138,7 +138,7 @@ docs/                  # Architecture, contracts, release and portfolio evidence
 
 [Architecture](docs/ARCHITECTURE.md) · [API contracts](docs/API_OVERVIEW.md) · [Testing](docs/TESTING.md) · [Security](docs/SECURITY.md) · [Deployment](docs/DEPLOYMENT.md) · [Release checklist](docs/RELEASE_CHECKLIST.md) · [Portfolio case study](docs/PORTFOLIO_CASE_STUDY.md)
 
-The planned development roadmap, Phases 0–9, is complete. Vercel deployment and manual production verification remain outstanding. The [historical roadmap](docs/DEVELOPMENT_ROADMAP.md) links implementation evidence. Future work is tracked as maintenance, enhancements, bug fixes or deployment operations.
+The planned development roadmap, Phases 0–9, is complete. Owner redeployment of the latest fixes and manual production verification remain outstanding. The [historical roadmap](docs/DEVELOPMENT_ROADMAP.md) links implementation evidence. Future work is tracked as maintenance, enhancements, bug fixes or deployment operations.
 
 ## Author
 

@@ -12,7 +12,7 @@ export function EconomySelectors({
   onChange: (next: EconomySelection) => void
 }) {
   return (
-    <Card className="mb-6 grid gap-5 p-5 sm:grid-cols-2">
+    <Card className="control-bar mb-6 grid gap-5 sm:grid-cols-2">
       <label className="min-w-0 text-sm font-medium">
         Country or economy
         <select

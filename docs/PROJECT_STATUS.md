@@ -1,26 +1,29 @@
 # Project status
 
-**Project:** InsightSphere — Multi-API Analytics Dashboard  
-**Current phase:** Phase 9 — Production & Portfolio  
-**Status:** Release preparation complete; Vercel adapter/routing prepared; deployment and manual production smoke testing pending.
+**Project:** InsightSphere — Multi-API Analytics Dashboard
 
-| Area                                  | State                                                                      |
-| ------------------------------------- | -------------------------------------------------------------------------- |
-| Phases 0–9                            | Complete                                                                   |
-| Phase 9                               | Complete — release preparation                                             |
-| Weather / Currency / Economy / Crypto | Implemented with offline contract and interaction coverage                 |
-| Unified dashboard                     | Complete; independent provider summaries                                   |
-| Product features                      | Complete; appearance, preferences, sorting, recovery                       |
-| Quality hardening                     | Complete; pinned TypeScript 6.0.3 and MSW 2.15.0                           |
-| Final automated tests                 | 349 tests in 19 files passed after UI refinement; see release verification |
-| Deployment                            | Vercel adapter and routing prepared; owner deployment pending              |
-| Live URL / screenshots                | Not yet available; manual capture required                                 |
-| License                               | None selected                                                              |
+**Roadmap:** Phases 0–9 complete as release preparation.
 
-The codebase is prepared for production integration, **not a deploy-as-is static site**. The Vercel adapter and API-before-SPA routing are implemented. The owner must configure the Vercel project, set the private key and run production smoke checks. See [Vercel verification](VERCEL_VERIFICATION.md). No hosting account, secret, DNS, GitHub metadata, commit or push was changed by this phase.
+**Current work:** Post-roadmap luxury analytics redesign and crypto function startup fix; local changes await owner review/redeployment.
 
-Browser automation timed out. Visual/responsive/native-focus/screen-reader and live-provider checks remain unverified. Provider availability and credits are external dependencies; proxy budgets are per instance. No monitoring or visitor analytics was added.
+| Area                                  | State                                                                                                                        |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Phases 0–9                            | Complete; no new phase opened                                                                                                |
+| Weather / Currency / Economy / Crypto | Implemented with offline contract and interaction coverage                                                                   |
+| Unified dashboard                     | Asymmetric desktop composition; independent summaries, saved selections and source dates                                     |
+| Product features                      | Appearance, preferences, sorting and recovery preserved                                                                      |
+| Quality                               | TypeScript 6.0.3 and MSW 2.15.0 remain pinned                                                                                |
+| Automated tests                       | 350 tests in 19 files passed; all 349 prior cases retained                                                                   |
+| Deployment                            | Existing owner-managed Vercel production deployment confirmed through read-only metadata                                     |
+| Crypto production                     | Current deployment fails on a `.ts` import retained in emitted JavaScript; import fix verified locally, redeployment pending |
+| Live URL                              | https://insight-sphere-theta.vercel.app/                                                                                     |
+| Visual review / screenshots           | Browser automation timed out; manual review and capture outstanding                                                          |
+| License                               | None selected                                                                                                                |
 
-Post-roadmap UI and Vercel evidence is recorded in [release verification](VERCEL_PREMIUM_UI_VERIFICATION.md).
+The current production crypto failure is a function startup/module-resolution error, not established evidence of a missing credential. Only import paths changed in the server adapter/proxy; key handling, runtime validation, cache, budgets and routing are preserved. The new regression test compiles and starts the emitted JavaScript in a separate Node process. It does not certify Vercel packaging or production recovery.
 
-Start with [deployment](DEPLOYMENT.md) and [release checks](RELEASE_CHECKLIST.md). See [Phase 9 evidence](PHASE_9_VERIFICATION.md), [historical roadmap](DEVELOPMENT_ROADMAP.md) and [portfolio case study](PORTFOLIO_CASE_STUDY.md). All preparation gates passed. Deployment completion remains a separate owner-led operation.
+The presentation redesign changes layout hierarchy across the overview, shell and all domain views. API services, schemas, normalization, query keys, caching and MSW lifecycle are unchanged. See [luxury redesign verification](LUXURY_UI_REDESIGN_VERIFICATION.md) for baseline, responsive source review, tests, security, performance and production diagnosis.
+
+No deployment, hosting setting, secret, DNS, commit or push was changed by this task. The owner should review locally, inspect both themes and System, resize across the documented widths, verify Crypto, approve/commit/push, redeploy and run production smoke tests before capturing screenshots. Real provider credentials, rendered responsive behavior, native focus containment and screen-reader output remain unverified.
+
+Start with [deployment](DEPLOYMENT.md) and [release checks](RELEASE_CHECKLIST.md). Historical evidence remains in [Phase 9 verification](PHASE_9_VERIFICATION.md), [prior Vercel/UI verification](VERCEL_PREMIUM_UI_VERIFICATION.md) and the [completed roadmap](DEVELOPMENT_ROADMAP.md). Proxy budgets are per instance; monitoring and visitor analytics are not installed.

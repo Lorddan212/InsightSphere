@@ -8,19 +8,21 @@ export default function DashboardOverview() {
   return (
     <>
       <PageHeader
-        title="Analytics Overview"
-        description="Monitor weather, foreign exchange, economic and digital-asset indicators from one workspace."
+        title="Global Intelligence Overview"
+        description="Your selected markets, economies and conditions, in perspective."
       />
-      <p className="data-note mb-7">
-        Summaries follow your saved selections. Each provider publishes on its
-        own schedule; observation dates identify the period each value
-        describes.
-      </p>
-      <div className="grid items-stretch gap-6 xl:grid-cols-2">
-        <WeatherSummary />
+      <div className="overview-grid">
         <CurrencySummary />
+        <WeatherSummary />
         <EconomySummary />
         <CryptoSummary />
+      </div>
+      <div className="mt-8 border-t border-line pt-5">
+        <p className="max-w-3xl text-xs leading-6 text-muted">
+          Summaries follow your saved selections. Each provider publishes on its
+          own schedule; observation dates identify the period each value
+          describes.
+        </p>
       </div>
     </>
   )

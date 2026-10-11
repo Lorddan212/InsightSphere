@@ -56,27 +56,8 @@ export function CurrencySummary() {
       error={error}
       hasData={identity || !!latest.data || !!history.data?.length}
       onRefresh={refresh}
-    >
-      <SummaryValue
-        label={
-          selection
-            ? `1 ${selection.base} in ${selection.quote}`
-            : 'Reference exchange rate'
-        }
-        value={identity ? '1' : formatRate(latest.data?.rate ?? null)}
-      />
-      {identity ? (
-        <p className="text-sm text-muted">
-          Same-currency identity rate. No market history applies.
-        </p>
-      ) : (
-        <>
-          <p className="text-sm text-muted">
-            Period change: {formatChange(metrics.percentage)}
-            {metrics.first && metrics.last
-              ? ` · ${formatCurrencyDate(metrics.first.date)}–${formatCurrencyDate(metrics.last.date)}`
-              : ''}
-          </p>
+      trend={
+        !identity && (
           <MiniTrend
             title={`Reference rate · ${selection?.quote ?? ''} per ${selection?.base ?? ''}`}
             points={(history.data ?? []).map((point) => ({
@@ -86,7 +67,30 @@ export function CurrencySummary() {
             }))}
             format={formatRate}
           />
-        </>
+        )
+      }
+      metric={
+        <SummaryValue
+          label={
+            selection
+              ? `1 ${selection.base} in ${selection.quote}`
+              : 'Reference exchange rate'
+          }
+          value={identity ? '1' : formatRate(latest.data?.rate ?? null)}
+        />
+      }
+    >
+      {identity ? (
+        <p className="text-sm text-muted">
+          Same-currency identity rate. No market history applies.
+        </p>
+      ) : (
+        <p className="text-sm text-muted">
+          Period change: {formatChange(metrics.percentage)}
+          {metrics.first && metrics.last
+            ? ` · ${formatCurrencyDate(metrics.first.date)}–${formatCurrencyDate(metrics.last.date)}`
+            : ''}
+        </p>
       )}
       <p className="text-xs text-muted">
         {identity

@@ -1,4 +1,3 @@
-import { Card } from '../../../components/ui/Card'
 import type { CryptoAsset, GlobalCryptoMarket } from '../types/crypto'
 import {
   formatChange,
@@ -25,7 +24,7 @@ export function Change({ value }: { value: number | null }) {
 export function GlobalMetrics({ data }: { data: GlobalCryptoMarket }) {
   return (
     <section aria-label="Global cryptocurrency market" className="space-y-3">
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="metric-strip">
         {[
           ['Global market cap', formatCompact(data.marketCap)],
           ['Global 24h volume', formatCompact(data.volume)],
@@ -42,10 +41,10 @@ export function GlobalMetrics({ data }: { data: GlobalCryptoMarket }) {
               : `${data.ethereumDominance.toFixed(2)}%`,
           ],
         ].map(([label, value]) => (
-          <Card key={label} className="p-5">
+          <div key={label}>
             <p className="text-xs text-muted">{label}</p>
-            <p className="metric-value mt-3 text-2xl">{value}</p>
-          </Card>
+            <p className="metric-value mt-2 text-xl">{value}</p>
+          </div>
         ))}
       </div>
       <p className="text-xs text-muted">
@@ -70,10 +69,10 @@ export function AssetMetrics({ asset }: { asset: CryptoAsset }) {
         </div>
         <p className="text-xs text-muted">{formatUpdated(asset.updatedAt)}</p>
       </div>
-      <dl className="grid gap-5 rounded-xl bg-elevated p-5 sm:grid-cols-2 xl:grid-cols-4">
+      <dl className="asset-metrics">
         <div>
           <dt className="text-sm text-muted">Current price (USD)</dt>
-          <dd className="metric-value mt-2 text-3xl">
+          <dd className="asset-price metric-value mt-3">
             {formatPrice(asset.price)}
           </dd>
         </div>

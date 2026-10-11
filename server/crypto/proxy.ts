@@ -7,8 +7,8 @@ import {
   historySchema,
   globalSchema,
   CRYPTO_ERRORS,
-} from '../../src/features/crypto/schemas/crypto.schemas.ts'
-import type { CryptoErrorCode } from '../../src/features/crypto/schemas/crypto.schemas.ts'
+} from '../../src/features/crypto/schemas/crypto.schemas.js'
+import type { CryptoErrorCode } from '../../src/features/crypto/schemas/crypto.schemas.js'
 
 const ROOT = 'https://api.coingecko.com/api/v3'
 interface Route {

@@ -1,4 +1,3 @@
-import { Card } from '../../../components/ui/Card'
 import type { ExchangeRatePoint } from '../types/currencies.types'
 import { calculateCurrencyMetrics } from '../utils/currencyCalculations'
 import {
@@ -55,16 +54,13 @@ export function CurrencyMetrics({
     },
   ]
   return (
-    <section
-      aria-label="Exchange rate metrics"
-      className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
-    >
+    <section aria-label="Exchange rate metrics" className="metric-strip mt-6">
       {cards.map((card) => (
-        <Card key={card.label} className="min-w-0 p-5">
+        <div key={card.label}>
           <h2 className="text-sm text-muted">{card.label}</h2>
           <p className="metric-value mt-3 text-2xl">{card.value}</p>
           <p className="mt-2 text-xs leading-5 text-muted">{card.detail}</p>
-        </Card>
+        </div>
       ))}
     </section>
   )

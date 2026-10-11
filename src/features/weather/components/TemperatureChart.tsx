@@ -44,7 +44,7 @@ export function TemperatureChart({
             {value(insight.high, 'temperature')}
           </p>
           <div
-            className="mt-5 h-64 w-full min-w-0 sm:h-72"
+            className="chart-plot mt-5 w-full"
             role="img"
             aria-label={`Temperature forecast, ranging from ${value(insight.low, 'temperature')} to ${value(insight.high, 'temperature')}. Full data is available in the hourly table below.`}
           >

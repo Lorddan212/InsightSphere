@@ -6,4 +6,6 @@ export const chartTooltipStyle = {
   padding: '12px 16px',
   boxShadow: 'var(--panel-shadow)',
   fontSize: 12,
+  maxWidth: 'min(18rem, calc(100vw - 3rem))',
+  whiteSpace: 'normal' as const,
 }

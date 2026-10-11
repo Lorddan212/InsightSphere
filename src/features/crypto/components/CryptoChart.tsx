@@ -51,7 +51,7 @@ export function CryptoChart({
         role="img"
         aria-label={`${name} ${period} price trend`}
         aria-describedby="crypto-chart-context"
-        className="h-72 min-w-0"
+        className="chart-plot"
       >
         <ResponsiveContainer width="100%" height="100%" minWidth={0}>
           <LineChart

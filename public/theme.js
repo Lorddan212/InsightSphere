@@ -16,5 +16,5 @@
   document.documentElement.dataset.theme = theme
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', theme === 'dark' ? '#101c2b' : '#f3f6fa')
+    ?.setAttribute('content', theme === 'dark' ? '#070d18' : '#f1f3f6')
 })()

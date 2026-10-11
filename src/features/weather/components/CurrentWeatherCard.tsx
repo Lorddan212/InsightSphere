@@ -25,7 +25,7 @@ export function CurrentWeatherCard({
       localDateKey(reference, data.timezone),
   )
   return (
-    <Card className="grid overflow-hidden md:grid-cols-[1.2fr_1fr]">
+    <Card className="lead-panel grid overflow-hidden md:grid-cols-[1.2fr_1fr] xl:grid-cols-1 min-[1600px]:grid-cols-[1.2fr_1fr]">
       <section aria-labelledby="current-weather-heading" className="p-6 sm:p-8">
         <div className="mb-4 flex items-start gap-2 text-muted">
           <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
@@ -69,12 +69,12 @@ export function CurrentWeatherCard({
       </section>
       <section
         aria-labelledby="today-heading"
-        className="border-t border-line bg-elevated p-6 sm:p-8 md:border-l md:border-t-0"
+        className="border-t border-line bg-elevated p-6 sm:p-8 md:border-l md:border-t-0 xl:border-l-0 xl:border-t min-[1600px]:border-l min-[1600px]:border-t-0"
       >
         <h2 id="today-heading" className="mb-5 font-semibold">
           Today’s outlook
         </h2>
-        <dl className="grid grid-cols-2 gap-x-5 gap-y-6">
+        <dl className="grid min-[375px]:grid-cols-2 gap-x-5 gap-y-6">
           <div>
             <dt className="text-xs text-muted">High / low</dt>
             <dd className="mt-2 font-semibold">

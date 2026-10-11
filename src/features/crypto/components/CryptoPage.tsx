@@ -46,7 +46,7 @@ export default function CryptoPage() {
           </Button>
         }
       />
-      <p className="data-note">
+      <p className="max-w-3xl text-xs leading-6 text-muted">
         Prices are periodic market snapshots, not a streaming feed. Refresh may
         reuse recently retrieved data.
       </p>
@@ -88,7 +88,7 @@ export default function CryptoPage() {
                   <div
                     role="group"
                     aria-label="Crypto history period"
-                    className="flex flex-wrap gap-2"
+                    className="period-control"
                   >
                     {periodSchema.options.map((period) => (
                       <Button

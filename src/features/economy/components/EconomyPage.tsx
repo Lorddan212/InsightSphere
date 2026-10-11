@@ -129,7 +129,7 @@ export default function EconomyPage() {
               <div
                 role="group"
                 aria-label="Economic period"
-                className="flex flex-wrap gap-1"
+                className="period-control"
               >
                 {ECONOMIC_PERIODS.map((period) => (
                   <Button

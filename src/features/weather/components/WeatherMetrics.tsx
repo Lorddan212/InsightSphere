@@ -1,5 +1,4 @@
 import { Droplets, Gauge, Umbrella, Wind } from 'lucide-react'
-import { Card } from '../../../components/ui/Card'
 import type { WeatherData } from '../types/weather.types'
 import {
   formatMeasurement as value,
@@ -39,9 +38,9 @@ export function WeatherMetrics({ data }: { data: WeatherData }) {
   ]
   return (
     <section aria-label="Weather metrics">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="weather-metrics">
         {metrics.map(({ title, icon: Icon, metric, detail }) => (
-          <Card key={title} className="p-5">
+          <div key={title} className="min-w-0 border-b border-line py-5">
             <div className="mb-4 flex items-center justify-between gap-2">
               <h2 className="text-sm font-medium text-muted">{title}</h2>
               <Icon
@@ -51,7 +50,7 @@ export function WeatherMetrics({ data }: { data: WeatherData }) {
             </div>
             <p className="metric-value text-2xl">{metric}</p>
             <p className="mt-3 text-xs leading-5 text-muted">{detail}</p>
-          </Card>
+          </div>
         ))}
       </div>
       <p className="mt-3 text-xs text-muted">

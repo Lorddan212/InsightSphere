@@ -24,13 +24,13 @@ export function CurrencyConverter({
       ? 'The converted value is too large to display reliably. Enter a smaller amount.'
       : null)
   return (
-    <Card className="mb-6 p-5 sm:p-6">
+    <Card className="p-5 sm:p-6">
       <h2 className="text-lg font-semibold">Currency converter</h2>
       <p className="mt-1 text-sm text-muted">
         An estimate at the reference rate. Fees and bank spreads are not
         included.
       </p>
-      <div className="mt-5 grid gap-5 sm:grid-cols-2">
+      <div className="mt-5 grid gap-5 min-[640px]:grid-cols-2 xl:grid-cols-1 min-[1440px]:grid-cols-2">
         <div>
           <label htmlFor="currency-amount" className="text-sm font-medium">
             Amount in {base}

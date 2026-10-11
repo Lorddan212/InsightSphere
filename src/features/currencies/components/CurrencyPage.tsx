@@ -99,24 +99,31 @@ export default function CurrencyPage() {
             selection={selection}
             onChange={select}
           />
-          <div className="analytics-panel mb-6 border-l-2 border-l-accent p-6 sm:p-7">
-            <p className="text-sm font-medium text-muted">
-              {identity
-                ? 'Same-currency conversion'
-                : 'Latest published reference'}
-            </p>
-            <p className="metric-value mt-3 text-2xl sm:text-3xl">
-              {rate === null
-                ? `${selection.base} / ${selection.quote} · Rate unavailable`
-                : `1 ${selection.base} = ${formatRate(rate)} ${selection.quote}`}
-            </p>
-            <p className="mt-2 text-sm text-muted">
-              {identity
-                ? 'Identity rate: no exchange is needed. No provider rate or history is requested.'
-                : latest.data
-                  ? `Provider date: ${formatCurrencyDate(latest.data.date)}. Reference data, not real-time pricing.`
-                  : 'Awaiting a published reference rate.'}
-            </p>
+          <div className="currency-overview">
+            <div className="analytics-panel lead-panel flex flex-col justify-center p-6 sm:p-8">
+              <p className="text-sm font-medium text-muted">
+                {identity
+                  ? 'Same-currency conversion'
+                  : 'Latest published reference'}
+              </p>
+              <p className="metric-value mt-4 text-3xl sm:text-4xl">
+                {rate === null
+                  ? `${selection.base} / ${selection.quote} · Rate unavailable`
+                  : `1 ${selection.base} = ${formatRate(rate)} ${selection.quote}`}
+              </p>
+              <p className="mt-2 text-sm text-muted">
+                {identity
+                  ? 'Identity rate: no exchange is needed. No provider rate or history is requested.'
+                  : latest.data
+                    ? `Provider date: ${formatCurrencyDate(latest.data.date)}. Reference data, not real-time pricing.`
+                    : 'Awaiting a published reference rate.'}
+              </p>
+            </div>
+            <CurrencyConverter
+              base={selection.base}
+              quote={selection.quote}
+              rate={rate}
+            />
           </div>
           {!identity && latest.isPending && (
             <CurrencyLoading label="Loading latest rate" />
@@ -144,18 +151,6 @@ export default function CurrencyPage() {
               unavailable; historical analysis may still be available.
             </p>
           )}
-          <CurrencyMetrics
-            rate={rate}
-            points={identity ? [] : (history.data ?? [])}
-            quote={selection.quote}
-            period={selection.period}
-            identity={identity}
-          />
-          <CurrencyConverter
-            base={selection.base}
-            quote={selection.quote}
-            rate={rate}
-          />
           <Card className="min-w-0 p-5 sm:p-6">
             <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
               <div>
@@ -169,7 +164,7 @@ export default function CurrencyPage() {
               <div
                 role="group"
                 aria-label="Historical period"
-                className="flex flex-wrap gap-1"
+                className="period-control"
               >
                 {CURRENCY_PERIODS.map((period) => (
                   <Button
@@ -225,6 +220,13 @@ export default function CurrencyPage() {
               </>
             )}
           </Card>
+          <CurrencyMetrics
+            rate={rate}
+            points={identity ? [] : (history.data ?? [])}
+            quote={selection.quote}
+            period={selection.period}
+            identity={identity}
+          />
         </>
       )}
       <p className="mt-6 text-xs leading-6 text-muted">

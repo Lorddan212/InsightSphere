@@ -103,12 +103,14 @@ export default function WeatherPage() {
                   Available data is shown below; no values have been estimated.
                 </p>
               )}
-              <CurrentWeatherCard
-                data={data}
-                location={location}
-                retrievedAt={weather.dataUpdatedAt}
-              />
-              <WeatherMetrics data={data} />
+              <div className="weather-overview">
+                <CurrentWeatherCard
+                  data={data}
+                  location={location}
+                  retrievedAt={weather.dataUpdatedAt}
+                />
+                <WeatherMetrics data={data} />
+              </div>
               <TemperatureChart hourly={data.hourly} timezone={data.timezone} />
               <HourlyForecast hourly={data.hourly} timezone={data.timezone} />
               <DailyForecast daily={data.daily} timezone={data.timezone} />
